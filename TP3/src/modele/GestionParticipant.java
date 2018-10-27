@@ -10,14 +10,14 @@ public class GestionParticipant {
 
 	private TableParticipants participant;
 	private TableEquipes equipe;
-	private TableLigues ligue;
+	private Ligues ligue;
 	private Connexion cx;
 
 	/**
 	 * Creation d'une instance
 	 * 
 	 */
-	public GestionParticipant(TableParticipants participant , TableEquipes equipe, TableLigues ligue) throws IFT287Exception {
+	public GestionParticipant(TableParticipants participant , TableEquipes equipe, Ligues ligue) throws IFT287Exception {
 		this.cx = participant.getConnexion();
 
 		if (participant.getConnexion() != equipe.getConnexion() && participant.getConnexion() != ligue.getConnexion())

@@ -12,7 +12,7 @@ import modele.GestionLigue;
 import modele.GestionParticipant;
 import modele.GestionResultat;
 import modele.TableEquipes;
-import modele.TableLigues;
+import modele.Ligues;
 import modele.TableParticipants;
 import modele.TableResultats;
 
@@ -56,7 +56,7 @@ public class CentreSportif
     private static GestionParticipant gestionParticipant;
     private static GestionResultat gestionResultat;
     private static TableEquipes tableEquipes;
-    private static TableLigues tableLigues;
+    private static Ligues tableLigues;
     private static TableParticipants tableParticipants;
     private static TableResultats tableResultats;
 
@@ -97,7 +97,7 @@ public class CentreSportif
     
     static void Init() throws SQLException, IFT287Exception
     {
-    	tableLigues = new TableLigues(cx);
+    	tableLigues = new Ligues(cx);
     	tableEquipes = new TableEquipes(cx);
     	tableParticipants = new TableParticipants(cx);
     	tableResultats = new TableResultats(cx);

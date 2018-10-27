@@ -9,7 +9,7 @@ import CentreSportif.IFT287Exception;
 public class GestionEquipe {
 
 	private TableEquipes equipe;
-	private TableLigues ligue;
+	private Ligues ligue;
 	private TableParticipants participant;
 	private TableResultats resultat;
 	private Connexion cx;
@@ -17,7 +17,7 @@ public class GestionEquipe {
 	/**
 	 * Creation d'une instance
 	 */
-	public GestionEquipe(TableEquipes equipe, TableParticipants participant, TableLigues ligue, TableResultats resultat)
+	public GestionEquipe(TableEquipes equipe, TableParticipants participant, Ligues ligue, TableResultats resultat)
 			throws IFT287Exception {
 		this.cx = equipe.getConnexion();
 		if (equipe.getConnexion() == ligue.getConnexion() && participant.getConnexion() == equipe.getConnexion()

@@ -1,21 +1,35 @@
 package modele;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+
+@Entity
 public class Ligue {
 
 	// Attributes
 
+	//@Id
+	//@GeneratedValue
 	private String nomLigue;
-	private ArrayList<Equipe> listEquipes;
+	
+	@OneToMany(mappedBy = "ligue", cascade = CascadeType.ALL)
+	@OrderBy("nomEquipe")
+	private List<Equipe> listEquipes;
 	private int nbJoueurMaxParEquipe;
 
 	// Builders
-	
+
 	public Ligue() {
 	}
 
-	public Ligue(String nomLigue, ArrayList<Equipe> listEquipes, int nbJoueurMaxParEquipe) {
+	public Ligue(String nomLigue, List<Equipe> listEquipes, int nbJoueurMaxParEquipe) {
 		super();
 		this.nomLigue = nomLigue;
 		this.listEquipes = listEquipes;
@@ -25,12 +39,11 @@ public class Ligue {
 	public Ligue(String nomLigue, int nbJoueurMaxParEquipe) {
 		super();
 		this.nomLigue = nomLigue;
-		this.listEquipes = new ArrayList<Equipe>();
+		this.listEquipes = new LinkedList<Equipe>();
 		this.setNbJoueurMaxParEquipe(nbJoueurMaxParEquipe);
 	}
 
 	// Getters & Setters
-
 
 	public String getNomLigue() {
 		return nomLigue;
@@ -40,11 +53,11 @@ public class Ligue {
 		this.nomLigue = nomLigue;
 	}
 
-	public ArrayList<Equipe> getListEquipes() {
+	public List<Equipe> getListEquipes() {
 		return listEquipes;
 	}
 
-	public void setListEquipes(ArrayList<Equipe> listEquipes) {
+	public void setListEquipes(List<Equipe> listEquipes) {
 		this.listEquipes = listEquipes;
 	}
 
@@ -56,19 +69,36 @@ public class Ligue {
 		this.nbJoueurMaxParEquipe = nbJoueurMaxParEquipe;
 	}
 
+	/**
+	 * Ajout une equipe à la liste d'equipe d'une ligue
+	 * @param equipe
+	 */
+	public void ajouteEquipe(Equipe equipe) {
+		listEquipes.add(equipe);
+	}
+
+	/**
+	 * Supprime une equipe de la liste d'equipe d'une ligue
+	 * @param equipe
+	 */
+	public void supprimerEquipe(Equipe equipe) {
+		listEquipes.remove(equipe);
+	}
+
 	@Override
 	public String toString() {
 		return "Ligue [nomLigue=" + nomLigue + ", listEquipes=" + listEquipes + ", nbJoueurMaxParEquipe="
 				+ nbJoueurMaxParEquipe + "]";
 	}
-	
+
 	/**
-	 * Véririe si 
+	 * Véririe si
+	 * 
 	 * @return
 	 */
 	public boolean isActive() {
 		boolean testIsActive = true;
-		if(this.getListEquipes().size() == 0) {
+		if (this.getListEquipes().size() == 0) {
 			testIsActive = false;
 		}
 		return testIsActive;
@@ -77,11 +107,11 @@ public class Ligue {
 	public boolean testNewEquipes(String nomLigue) {
 		boolean testNewEquipe = true;
 		for (Equipe equipe : this.listEquipes) {
-			if(!equipe.getNomLigue().equals(nomLigue)) {
+			if (!equipe.getNomLigue().equals(nomLigue)) {
 				testNewEquipe = false;
 			}
 		}
 		return testNewEquipe;
 	}
-	
+
 }
