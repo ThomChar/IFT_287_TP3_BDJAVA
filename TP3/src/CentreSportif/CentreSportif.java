@@ -11,10 +11,10 @@ import modele.GestionEquipe;
 import modele.GestionLigue;
 import modele.GestionParticipant;
 import modele.GestionResultat;
-import modele.TableEquipes;
+import modele.Equipes;
 import modele.Ligues;
 import modele.TableParticipants;
-import modele.TableResultats;
+import modele.Resultats;
 
 import java.sql.*;
 //Les paramètres pour exécuter notre programme dinf ift287_23db ift287_23 paique
@@ -55,10 +55,10 @@ public class CentreSportif
     private static GestionLigue gestionLigue;
     private static GestionParticipant gestionParticipant;
     private static GestionResultat gestionResultat;
-    private static TableEquipes tableEquipes;
-    private static Ligues tableLigues;
-    private static TableParticipants tableParticipants;
-    private static TableResultats tableResultats;
+    private static Equipes Equipes;
+    private static Ligues Ligues;
+    private static TableParticipants Participants;
+    private static Resultats Resultats;
 
     /**
      * @param args
@@ -97,14 +97,14 @@ public class CentreSportif
     
     static void Init() throws SQLException, IFT287Exception
     {
-    	tableLigues = new Ligues(cx);
-    	tableEquipes = new TableEquipes(cx);
-    	tableParticipants = new TableParticipants(cx);
-    	tableResultats = new TableResultats(cx);
-        gestionLigue = new GestionLigue(tableLigues, tableEquipes, tableParticipants);
-		gestionEquipe = new GestionEquipe(tableEquipes,tableParticipants,tableLigues,tableResultats);
-        gestionParticipant = new GestionParticipant(tableParticipants, tableEquipes, tableLigues);
-        gestionResultat = new GestionResultat(tableResultats);
+    	Ligues = new Ligues(cx);
+    	Equipes = new Equipes(cx);
+    	Participants = new TableParticipants(cx);
+    	Resultats = new Resultats(cx);
+        gestionLigue = new GestionLigue(Ligues, Equipes, Participants);
+		gestionEquipe = new GestionEquipe(Equipes,Participants,Ligues,Resultats);
+        gestionParticipant = new GestionParticipant(Participants, Equipes, Ligues);
+        gestionResultat = new GestionResultat(Resultats, Equipes);
     }
 
     /**

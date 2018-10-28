@@ -8,14 +8,14 @@ public class GestionLigue {
 
   	private Ligues ligues;
   	@SuppressWarnings("unused")
-	private TableEquipes equipe;			// unused si suppression en cascade
+	private Equipes equipe;			// unused si suppression en cascade
   	private TableParticipants participant;
     private Connexion cx;
 
     /**
      * Creation d'une instance
      */
-    public GestionLigue(Ligues ligues, TableEquipes equipe, TableParticipants participant) throws IFT287Exception
+    public GestionLigue(Ligues ligues, Equipes equipe, TableParticipants participant) throws IFT287Exception
     {
         this.cx = ligues.getConnexion();
         if (participant.getConnexion() != ligues.getConnexion() || equipe.getConnexion() != ligues.getConnexion())
@@ -129,7 +129,7 @@ public class GestionLigue {
     {
         cx.demarreTransaction();
         
-        List<Ligue> l = ligues.calculerListeLigue();
+        List<Ligue> l = ligues.calculerListeLigues();
                 
         for(Ligue li : l)
         {

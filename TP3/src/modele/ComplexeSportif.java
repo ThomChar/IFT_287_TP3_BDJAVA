@@ -173,7 +173,7 @@ public class ComplexeSportif {
 
 	}
 
-	public void ajouterEquipe(String nomLigue, String nomEquipe, String matriculeCap) throws IFT287Exception {
+	/*public void ajouterEquipe(String nomLigue, String nomEquipe, String matriculeCap) throws IFT287Exception {
 
 		boolean trouve = false;
 
@@ -193,7 +193,7 @@ public class ComplexeSportif {
 		} else {
 			throw new IFT287Exception("L'Equipe selectionné existe déjà");
 		}
-	}
+	}*/
 
 	public Participant RechercheParticipant(String matricule) throws IFT287Exception {
 		Participant participantTrouve = null;

@@ -1,13 +1,23 @@
 package modele;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Resultat {
  
 	//Attributes
 	
-	private Equipe EquipeA;
-	private Equipe EquipeB;
-	private String nomEquipeA;
-	private String nomEquipeB;
+	@Id
+    @GeneratedValue
+    
+    @ManyToMany						//Ne sais pas quoi mettre cascade ou non
+	private Equipe equipeA;
+	@ManyToMany						//Ne sais pas quoi mettre cascade ou non
+	private Equipe equipeB;
+	
 	private int scoreEquipeA;
 	private int scoreEquipeB;
 		
@@ -16,12 +26,11 @@ public class Resultat {
 	public Resultat() {
 	}
 	
-	public Resultat(String nomEquipeA, String nomEquipeB, int scoreEquipeA, int scoreEquipeB) {
+	public Resultat(Equipe equipeA, Equipe equipeB, int scoreEquipeA, int scoreEquipeB) {
 		super();
-		this.EquipeA = null;
-		this.EquipeB = null;
-		this.nomEquipeA = nomEquipeA;
-		this.nomEquipeB = nomEquipeB;
+		this.equipeA = equipeA;
+		this.equipeB = equipeB;
+		
 		this.scoreEquipeA = scoreEquipeA;
 		this.scoreEquipeB = scoreEquipeB;
 	}
@@ -29,17 +38,17 @@ public class Resultat {
 	//Getters & Setters
 	
 	public Equipe getEquipeA() {
-		return EquipeA;
+		return equipeA;
 	}
 	
 	public void setEquipeA(Equipe equipeA) {
-		EquipeA = equipeA;
+		this.equipeA = equipeA;
 	}
 	public Equipe getEquipeB() {
-		return EquipeB;
+		return equipeB;
 	}
 	public void setEquipeB(Equipe equipeB) {
-		EquipeB = equipeB;
+		this.equipeB = equipeB;
 	}
 	public int getScoreEquipeA() {
 		return scoreEquipeA;
@@ -54,25 +63,9 @@ public class Resultat {
 		this.scoreEquipeB = scoreEquipeB;
 	}
 
-	public String getNomEquipeA() {
-		return nomEquipeA;
-	}
-
-	public void setNomEquipeA(String nomEquipeA) {
-		this.nomEquipeA = nomEquipeA;
-	}
-
-	public String getNomEquipeB() {
-		return nomEquipeB;
-	}
-
-	public void setNomEquipeB(String nomEquipeB) {
-		this.nomEquipeB = nomEquipeB;
-	}
-
 	@Override
 	public String toString() {
-		return "\nResultat [nomEquipeA=" + nomEquipeA + ", nomEquipeB=" + nomEquipeB + ", scoreEquipeA=" + scoreEquipeA
+		return "\nResultat [nomEquipeA=" + equipeA.getNomEquipe() + ", nomEquipeB=" + equipeB.getNomEquipe() + ", scoreEquipeA=" + scoreEquipeA
 				+ ", scoreEquipeB=" + scoreEquipeB + "]";
 	}
 	

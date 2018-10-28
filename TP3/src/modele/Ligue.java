@@ -107,7 +107,7 @@ public class Ligue {
 	public boolean testNewEquipes(String nomLigue) {
 		boolean testNewEquipe = true;
 		for (Equipe equipe : this.listEquipes) {
-			if (!equipe.getNomLigue().equals(nomLigue)) {
+			if (!equipe.getLigue().getNomLigue().equals(nomLigue)) {
 				testNewEquipe = false;
 			}
 		}

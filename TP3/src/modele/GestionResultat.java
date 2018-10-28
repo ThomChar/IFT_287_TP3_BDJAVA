@@ -1,40 +1,51 @@
 package modele;
 
-import java.sql.SQLException;
+import java.util.List;
 
 import CentreSportif.Connexion;
 import CentreSportif.IFT287Exception;
 
 public class GestionResultat {
 
-	private TableResultats resultat;
+	private Resultats resultats;
+	private Equipes equipes;
 	private Connexion cx;
 
-	public GestionResultat(TableResultats resultat) throws IFT287Exception {
-		this.cx = resultat.getConnexion();
-		this.resultat = resultat;
+	public GestionResultat(Resultats resultats, Equipes equipes) throws IFT287Exception {
+		this.cx = resultats.getConnexion();
+		if (equipes.getConnexion() == resultats.getConnexion()) {
+		this.resultats = resultats;
+		this.equipes = equipes;
+		}
 
 	}
 
 	/**
 	 *  Inscrit un resultat enntre deux equipes
 	 *  
-	 *  @throws SQLException, IFT287Exception, Exception
+	 *  @throws IFT287Exception, Exception
 	 */
 	public void InscrireResulat(String nomEquipeA, String nomEquipeB, int scoreEquipeA, int scoreEquipeB)
-			throws SQLException, IFT287Exception, Exception {
+			throws IFT287Exception, Exception {
 		try {
 			// Verifier si resultat equipeA contre EquipeB existe
-			Resultat tupleResultat = resultat.getResultat(nomEquipeA,nomEquipeB);
+			Resultat tupleResultat = resultats.getResultat(nomEquipeA,nomEquipeB);
 			//Si pas de match retour n'est autorisé
-			Resultat tupleResultat2 = resultat.getResultat(nomEquipeB,nomEquipeA);
+			Resultat tupleResultat2 = resultats.getResultat(nomEquipeB,nomEquipeA);
 			if (tupleResultat != null)
 				throw new IFT287Exception("Resultat deja existant: " + nomEquipeA + " contre " + nomEquipeB );
 			if (tupleResultat2 != null)
 				throw new IFT287Exception("Resultat deja existant: " + nomEquipeB + " contre " + nomEquipeA );
 
-			// Creation du resultat
-			resultat.ajouter(nomEquipeA, nomEquipeB, scoreEquipeA, scoreEquipeB);
+			//Recherche de l'equipe correspondant à l'equipe nomEquipeA
+			Equipe EquipeA = equipes.getEquipe(nomEquipeA);
+			//Recherche de l'equipe correspondant à l'equipe nomEquipeB
+			Equipe EquipeB = equipes.getEquipe(nomEquipeB);
+			
+			Resultat tupleNewResultat = new Resultat(EquipeA, EquipeB, scoreEquipeA, scoreEquipeB);
+			
+			// Creation du resultat dans la BD
+			resultats.creer(tupleNewResultat);
 
 			// Commit
 			cx.commit();
@@ -48,13 +59,14 @@ public class GestionResultat {
 	/**
 	 * Supprime resultat. Le resultat doit exister
 	 * 
-	 *  @throws SQLException, IFT287Exception, Exception
+	 *  @throws IFT287Exception, Exception
 	 */
-	public void supprimerResultat(String nomEquipeA, String nomEquipeB) throws SQLException, IFT287Exception, Exception {
+	public void supprimerResultat(String nomEquipeA, String nomEquipeB) throws IFT287Exception, Exception {
 		try {
 			
+			Resultat tupleNewResultat = resultats.getResultat(nomEquipeA, nomEquipeB);
 			// Verifier si resultat existe
-			if (resultat.supprimer(nomEquipeA, nomEquipeB) == 0)
+			if (resultats.supprimer(tupleNewResultat) == false)
 				throw new IFT287Exception("Resultat entre " + nomEquipeA + " et " + nomEquipeB + " n'existe pas");
 
 			// Commit
@@ -68,17 +80,30 @@ public class GestionResultat {
 	/**
 	 * Modifier resultat. Le resultat doit exister
 	 * 
-	 *  @throws SQLException, IFT287Exception, Exception
+	 *  @throws IFT287Exception, Exception
 	 */
-	public void modifierResultat(String nomEquipeA, String nomEquipeB, int scoreEquipeA, int scoreEquipeB) throws SQLException, IFT287Exception, Exception {
+	public void modifierResultat(String nomEquipeA, String nomEquipeB, int scoreEquipeA, int scoreEquipeB) throws IFT287Exception, Exception {
 		try {
 			
 			// Verifier si resultat existe
-			if (!resultat.existe(nomEquipeA, nomEquipeB))
+			if (!resultats.existe(nomEquipeA, nomEquipeB))
 				throw new IFT287Exception("Resultat entre " + nomEquipeA + " et " + nomEquipeB + " n'existe pas");
 			
-			resultat.modifier(nomEquipeA, nomEquipeB, scoreEquipeA, scoreEquipeB);
+			//Recherche de l'equipe correspondant à l'equipe nomEquipeA
+			Equipe equipeA = equipes.getEquipe(nomEquipeA);
+			//Recherche de l'equipe correspondant à l'equipe nomEquipeB
+			Equipe equipeB = equipes.getEquipe(nomEquipeB);
 			
+			Resultat tupleNewResultat = resultats.getResultat(nomEquipeA, nomEquipeB);
+			//Modification effectué sur le contenu du tuple
+			tupleNewResultat.setEquipeA(equipeA);
+			tupleNewResultat.setEquipeB(equipeB);
+			tupleNewResultat.setScoreEquipeA(scoreEquipeA);
+			tupleNewResultat.setScoreEquipeB(scoreEquipeB);
+			
+			//MOdification effectue sur la BD
+			resultats.modifierResultat(tupleNewResultat);
+						
 			// Commit
 			cx.commit();
 		} catch (Exception e) {
@@ -90,18 +115,55 @@ public class GestionResultat {
 	/**
 	 * Affichage de l'ensemble des résultats de la table.
 	 * 
-	 *  @throws SQLException, IFT287Exception, Exception
+	 *  @throws IFT287Exception, Exception
 	 */
-	public void affichageResultats() throws SQLException, IFT287Exception, Exception {
-		try {
-			resultat.afficher();
+	public void affichageResultats() throws IFT287Exception, Exception {
+		
+		cx.demarreTransaction();
+
+		List<Resultat> list = resultats.calculerListeResultats();
+
+		for (Resultat r : list) {
+			System.out.println(r.toString());
+		}
+
+		cx.commit();
+		/*try {
+			resultats.afficher();
 					
 			// Commit
 			cx.commit();
 		} catch (Exception e) {
 			cx.rollback();
 			throw e;
+		}*/
+	}
+	
+	/**
+	 * Affichage de l'ensemble des résultats d'une equipe.
+	 * 
+	 *  @throws IFT287Exception, Exception
+	 */
+	public void affichageResultatsEquipe(String nomEquipe) throws IFT287Exception, Exception {
+		
+		cx.demarreTransaction();
+
+		List<Resultat> list = resultats.calculerListeResultatsEquipe(nomEquipe);
+
+		for (Resultat r : list) {
+			System.out.println(r.toString());
 		}
+
+		cx.commit();
+		/*try {
+			resultats.afficher();
+					
+			// Commit
+			cx.commit();
+		} catch (Exception e) {
+			cx.rollback();
+			throw e;
+		}*/
 	}
 	
 

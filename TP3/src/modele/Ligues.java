@@ -14,11 +14,11 @@ public class Ligues {
 	private Connexion cx;
 
 	/**
-	 * Creation d'une instance. Précompilation d'énoncés SQL.
+	 * Creation d'une instance.
 	 */
 	public Ligues(Connexion cx)  {
 		this.cx = cx;
-		stmtExiste = cx.getConnection().createQuery("select l from ligue l where l.nomLigue = :nomLigue", Ligue.class);
+		stmtExiste = cx.getConnection().createQuery("select l from Ligue l where l.nomLigue = :nomLigue", Ligue.class);
 		stmtListToutesLigues = cx.getConnection().createQuery("select l from Ligue l", Ligue.class);
 		/*stmtListEquipesLigue = cx.getConnection()
 				.createQuery("select e from Equipe e where e.ligue.nomLigue = :nomLigue", Equipe.class);*/
@@ -109,7 +109,7 @@ public class Ligues {
      * Retourne l'ensemble des ligues de la base de donn�es
      * @return
      */
-    public List<Ligue> calculerListeLigue()
+    public List<Ligue> calculerListeLigues()
     {
         return stmtListToutesLigues.getResultList();
     }

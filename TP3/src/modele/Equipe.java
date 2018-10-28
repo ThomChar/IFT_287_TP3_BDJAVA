@@ -1,34 +1,52 @@
 package modele;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 
+@Entity
 public class Equipe {
 	
 	//Attributes
-
+	
+	@Id
+    @GeneratedValue
 	private String nomEquipe;
-	private ArrayList<Participant> listParticipants;
-	private String matriculeCap;
+	
+	@OneToMany(mappedBy = "equipe", cascade = CascadeType.ALL)
+	@OrderBy("nom")
+	private List<Participant> listParticipants;
+	
+	@OneToOne								// Demander si nécessaire pour un seul objet lié
 	private Participant capitaine;
-	private String nomLigue;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Ligue ligue;
-	private ArrayList<Resultat> listResultats;
+	
+	@ManyToMany								// Demander si c'est la bonne expression
+	private List<Resultat> listResultats;
 	
 	//Builders
 	
 	public Equipe() {
 	}
 	
-	public Equipe(String nomLigue, String nomEquipe, String matriculeCap) {
+	public Equipe(Ligue ligue, String nomEquipe, Participant capitaine) {
 		super();
-		this.setLigue(ligue);
 		this.nomEquipe = nomEquipe;
-		this.listParticipants = new ArrayList<Participant>();
-		this.matriculeCap = matriculeCap;
-		this.capitaine = null;
-		this.nomLigue = nomLigue;
-		this.ligue = null;
-		this.listResultats = new ArrayList<Resultat>();
+		this.listParticipants = new LinkedList<Participant>();
+		this.capitaine = capitaine;
+		this.ligue = ligue;
+		this.listResultats = new LinkedList<Resultat>();
 	}
 
 	//Getters & Setters
@@ -41,11 +59,11 @@ public class Equipe {
 		this.nomEquipe = nomEquipe;
 	}
 
-	public ArrayList<Participant> getListParticipants() {
+	public List<Participant> getListParticipants() {
 		return listParticipants;
 	}
 
-	public void setListParticipants(ArrayList<Participant> listParticipants) {
+	public void setListParticipants(List<Participant> listParticipants) {
 		this.listParticipants = listParticipants;
 	}
 
@@ -65,34 +83,46 @@ public class Equipe {
 		this.ligue = ligue;
 	}
 
-	public ArrayList<Resultat> getListResultats() {
+	public List<Resultat> getListResultats() {
 		return listResultats;
 	}
 
-	public void setListResultats(ArrayList<Resultat> listResultat) {
+	public void setListResultats(List<Resultat> listResultat) {
 		this.listResultats = listResultat;
 	}
-
-
-	public String getMatriculeCap() {
-		return matriculeCap;
+	
+	/**
+	 * Ajoute un participant à la liste de participants d'une equipe
+	 * @param equipe
+	 */
+	public void ajouterJoueur(Participant participant) {
+		listParticipants.add(participant);
 	}
-
-
-	public void setMatriculeCap(String matriculeCap) {
-		this.matriculeCap = matriculeCap;
+	
+	/**
+	 * Supprime un participant de la liste de participants d'une equipe
+	 * @param equipe
+	 */
+	public void supprimerJoueur(Participant participant) {
+		listParticipants.remove(participant);
 	}
-
-
-	public String getNomLigue() {
-		return nomLigue;
+	
+	/**
+	 * Ajoute un resultat à la liste de resultats d'une equipe
+	 * @param equipe
+	 */
+	public void ajouterResultat(Resultat resultat) {
+		listResultats.add(resultat);
 	}
-
-
-	public void setNomLigue(String nomLigue) {
-		this.nomLigue = nomLigue;
+	
+	/**
+	 * Supprime un resultat de la liste de resultats d'une equipe
+	 * @param equipe
+	 */
+	public void supprimerResultat(Resultat resultat) {
+		listResultats.remove(resultat);
 	}
-
+	
 	public boolean isActive() {
 		boolean testIsActive = true;
 		if(this.getListParticipants().size() == 0) {
@@ -103,10 +133,10 @@ public class Equipe {
 
 	@Override
 	public String toString() {
-		return "\nEquipe [nomEquipe=" + nomEquipe + ", matriculeCap="+ matriculeCap + ", nomLigue=" + nomLigue + ",\nlistParticipants=" + listParticipants + ",\nlistResultats=" + listResultats + "]";
+		return "\nEquipe [nomEquipe=" + nomEquipe + ", matriculeCap="+ capitaine.getMatricule() + ", nomLigue=" + ligue.getNomLigue() + ",\nlistParticipants=" + listParticipants + ",\nlistResultats=" + listResultats + "]";
 	}
 	public String toStringSimpleEquipe() {
-		return "\nEquipe [nomEquipe=" + nomEquipe + ", matriculeCap="+ matriculeCap + ", nomLigue=" + nomLigue + "]";
+		return "\nEquipe [nomEquipe=" + nomEquipe + ", matriculeCap="+ capitaine.getMatricule() + ", nomLigue=" + ligue.getNomLigue() + "]";
 	}
 
 }
