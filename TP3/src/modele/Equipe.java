@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -20,6 +19,7 @@ public class Equipe {
 	
 	@Id
     @GeneratedValue
+    private long id_equipe;
 	private String nomEquipe;
 	
 	@OneToMany(mappedBy = "equipe", cascade = CascadeType.ALL)
@@ -32,7 +32,7 @@ public class Equipe {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Ligue ligue;
 	
-	@ManyToMany								// Demander si c'est la bonne expression
+	@OneToMany(mappedBy = "id_resultat", cascade = CascadeType.ALL)
 	private List<Resultat> listResultats;
 	
 	//Builders

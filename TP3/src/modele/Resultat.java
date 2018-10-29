@@ -1,9 +1,10 @@
 package modele;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Resultat {
@@ -12,10 +13,11 @@ public class Resultat {
 	
 	@Id
     @GeneratedValue
-    
-    @ManyToMany						//Ne sais pas quoi mettre cascade ou non
+    private long id_resultat;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Equipe equipeA;
-	@ManyToMany						//Ne sais pas quoi mettre cascade ou non
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Equipe equipeB;
 	
 	private int scoreEquipeA;
