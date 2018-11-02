@@ -8,14 +8,14 @@ public class GestionEquipe {
 
 	private Equipes equipes;
 	private Ligues ligues;
-	private TableParticipants participants;
+	private Participants participants;
 	private Resultats resultats;
 	private Connexion cx;
 
 	/**
 	 * Creation d'une instance
 	 */
-	public GestionEquipe(Equipes equipes, TableParticipants participants, Ligues ligues, Resultats resultats)
+	public GestionEquipe(Equipes equipes, Participants participants, Ligues ligues, Resultats resultats)
 			throws IFT287Exception {
 		this.cx = equipes.getConnexion();
 		if (equipes.getConnexion() == ligues.getConnexion() && participants.getConnexion() == equipes.getConnexion()
@@ -106,11 +106,11 @@ public class GestionEquipe {
 				throw new IFT287Exception("Equipe " + nomEquipe + " n'existe pas : ");
 			if (!participants.existe(matriculeCap))
 				throw new IFT287Exception("Participant " + matriculeCap + " n'existe pas : ");
-			if (!(participants.getParticipant(matriculeCap).getNomEquipe().equals(nomEquipe)
+			if (!(participants.getParticipant(matriculeCap).getEquipe().getNomEquipe().equals(nomEquipe)
 					&& participants.getParticipant(matriculeCap).getStatut().equals("ACCEPTE")))
 				throw new IFT287Exception("Ce Particpant " + matriculeCap + " ne peut pas devenir captaine de "
 						+ nomEquipe + " car il n'est pas dans l'equipe");
-			if ((participants.getParticipant(matriculeCap).getNomEquipe().equals(nomEquipe)
+			if ((participants.getParticipant(matriculeCap).getEquipe().getNomEquipe().equals(nomEquipe)
 					&& participants.getParticipant(matriculeCap).getStatut().equals("ACCEPTE")))
 				throw new IFT287Exception("Ce Particpant " + matriculeCap + " ne peut pas devenir captaine de "
 						+ nomEquipe + " car il n'est pas dans l'equipe");

@@ -107,16 +107,6 @@ public class Equipes {
         
         return equipe;
     }
-    
-	/**
-	 * Change le capitaine de l'equipe.
-	 * 
-	 */
-	/*public void changerCapitaine(String nomEquipe, String matriculeCap) throws SQLException {
-		stmtUpdate.setString(1, matriculeCap);
-		stmtUpdate.setString(2, nomEquipe);
-		stmtUpdate.executeUpdate();
-	}*/
 	
     /**
      * Retourne l'ensemble des equipes de la base de données

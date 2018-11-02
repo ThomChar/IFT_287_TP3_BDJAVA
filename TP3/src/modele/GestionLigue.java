@@ -9,13 +9,13 @@ public class GestionLigue {
   	private Ligues ligues;
   	@SuppressWarnings("unused")
 	private Equipes equipe;			// unused si suppression en cascade
-  	private TableParticipants participant;
+  	private Participants participant;
     private Connexion cx;
 
     /**
      * Creation d'une instance
      */
-    public GestionLigue(Ligues ligues, Equipes equipe, TableParticipants participant) throws IFT287Exception
+    public GestionLigue(Ligues ligues, Equipes equipe, Participants participant) throws IFT287Exception
     {
         this.cx = ligues.getConnexion();
         if (participant.getConnexion() != ligues.getConnexion() || equipe.getConnexion() != ligues.getConnexion())

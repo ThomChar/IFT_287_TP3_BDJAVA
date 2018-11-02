@@ -1,19 +1,28 @@
 package modele;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Participant {
 	
+	@Id
+    @GeneratedValue
+    private long id_participant;
+	
 	//Attributes
-
 	private String matricule;
 	private String prenom;
 	private String nom;
 	private String motDePasse;
-	private String nomEquipe;
-	private Equipe equipe;
 	private String statut;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Equipe equipe;
 	
 	//Builders
-	
 	public Participant(String matricule, String prenom, String nom, String motDePasse) {
 		super();
 		this.matricule = matricule;
@@ -21,18 +30,16 @@ public class Participant {
 		this.nom = nom;
 		this.motDePasse = motDePasse;
 		this.equipe = null;
-		this.nomEquipe = null;
 		this.statut = null;
 	}
 	
-	public Participant(String matricule, String prenom, String nom, String motDePasse, String nomEquipe ) {
+	public Participant(String matricule, String prenom, String nom, String motDePasse, Equipe equipe) {
 		super();
 		this.matricule = matricule;
 		this.prenom = prenom;
 		this.nom = nom;
 		this.motDePasse = motDePasse;
-		this.nomEquipe = nomEquipe;
-		this.equipe = null;
+		this.equipe = equipe;
 		this.statut = null;
 	}
 	
@@ -81,14 +88,6 @@ public class Participant {
 
 	public void setStatut(String statut) {
 		this.statut = statut;
-	}
-
-	public String getNomEquipe() {
-		return nomEquipe;
-	}
-
-	public void setNomEquipe(String nomEquipe) {
-		this.nomEquipe = nomEquipe;
 	}
 	
 	@Override
