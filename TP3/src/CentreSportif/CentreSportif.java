@@ -13,7 +13,7 @@ import modele.GestionParticipant;
 import modele.GestionResultat;
 import modele.Equipes;
 import modele.Ligues;
-import modele.TableParticipants;
+import modele.Participants;
 import modele.Resultats;
 
 import java.sql.*;
@@ -57,7 +57,7 @@ public class CentreSportif
     private static GestionResultat gestionResultat;
     private static Equipes Equipes;
     private static Ligues Ligues;
-    private static TableParticipants Participants;
+    private static Participants Participants;
     private static Resultats Resultats;
 
     /**
@@ -79,11 +79,15 @@ public class CentreSportif
             // Il est possible que vous ayez à déplacer la connexion ailleurs.
             // N'hésitez pas à le faire!
             cx = new Connexion(args[0], args[1], args[2], args[3]);
+            System.out.println("nnn");
             BufferedReader reader = ouvrirFichier(args);  
             String transaction = lireTransaction(reader);
+            System.out.println("mmm");
             Init();
+            System.out.println("ddd");
             while (!finTransaction(transaction))
             {
+            	System.out.println("caca");
                 executerTransaction(transaction);
                 transaction = lireTransaction(reader);
             }
@@ -99,7 +103,7 @@ public class CentreSportif
     {
     	Ligues = new Ligues(cx);
     	Equipes = new Equipes(cx);
-    	Participants = new TableParticipants(cx);
+    	Participants = new Participants(cx);
     	Resultats = new Resultats(cx);
         gestionLigue = new GestionLigue(Ligues, Equipes, Participants);
 		gestionEquipe = new GestionEquipe(Equipes,Participants,Ligues,Resultats);
@@ -130,7 +134,7 @@ public class CentreSportif
                 	String nom = readString(tokenizer);
                 	String motDePasse = readString(tokenizer);
                 	String matricule = readString(tokenizer);
-                	gestionParticipant.ajouter(matricule, prenom, nom, motDePasse, null, "none");
+                	gestionParticipant.ajouter(matricule, prenom, nom, motDePasse);
                 }
                 else if(command.equals("supprimerParticipant")) 
                 {
@@ -166,7 +170,7 @@ public class CentreSportif
                 {
                 	String nomEquipe = readString(tokenizer);
                 	String matricule = readString(tokenizer);
-                	gestionParticipant.ajouteParEquipe(nomEquipe, matricule);
+                	gestionParticipant.accepteParEquipe(nomEquipe, matricule);
                 }
                 else if(command.equals("accepterJoueur"))	
                 {
