@@ -57,7 +57,6 @@ public class GestionEquipe {
 
 			// Ajout de l equipe dans la table des equipes
 			equipes.creer(tupleEquipe);
-
 			// Commit
 			cx.commit();
 		} catch (Exception e) {
