@@ -78,16 +78,12 @@ public class CentreSportif
         	
             // Il est possible que vous ayez à déplacer la connexion ailleurs.
             // N'hésitez pas à le faire!
-            cx = new Connexion(args[0], args[1], args[2], args[3]);
-            System.out.println("nnn");
+        	cx = new Connexion(args[0], args[1], args[2], args[3]);
             BufferedReader reader = ouvrirFichier(args);  
             String transaction = lireTransaction(reader);
-            System.out.println("mmm");
             Init();
-            System.out.println("ddd");
             while (!finTransaction(transaction))
             {
-            	System.out.println("caca");
                 executerTransaction(transaction);
                 transaction = lireTransaction(reader);
             }
@@ -228,10 +224,6 @@ public class CentreSportif
         catch (Exception e)
         {
             System.out.println(" " + e.toString());
-            // Ce rollback est ici seulement pour vous aider et éviter des problèmes lors de la correction
-            // automatique. En théorie, il ne sert à rien et ne devrait pas apparaître ici dans un programme
-            // fini et fonctionnel sans bogues.
-            cx.rollback();
         }
     }
 

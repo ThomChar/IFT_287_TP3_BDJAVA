@@ -1,0 +1,63 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-02 17:47:13 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\myDbFile.odb' is opened by 8812@LAPTOP-49CGENSA
+
+[2018-11-02 17:47:13 #2 store] 
+Configuration path: ?
+
+[2018-11-02 17:47:52 #3 type.registry] 
+New type modele.Ligue
+
+[2018-11-02 17:47:52 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-02 17:47:52 #5 type.registry] 
+New type modele.Equipe
+
+[2018-11-02 17:47:52 #6 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-02 17:47:52 #7 type.registry] 
+New type modele.Resultat
+
+[2018-11-02 17:47:52 #8 type.registry] 
+New type modele.Participant
+
+[2018-11-02 17:47:52 #9 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-02 17:47:52 #10 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-02 17:47:52 #11 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\myDbFile.odb' is closed by 8812@LAPTOP-49CGENSA
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-02 17:49:31 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\myDbFile.odb' is opened by 14356@LAPTOP-49CGENSA
+
+[2018-11-02 17:49:31 #2 store] 
+Configuration path: ?
+
+[2018-11-02 17:49:31 #3 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-02 17:49:31 #4 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-02 17:49:31 #5 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-02 17:49:31 #6 type] 
+Type modele.Participant is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-02 17:59:29 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\myDbFile2.odb' is opened by 14828@LAPTOP-49CGENSA
+
+[2018-11-02 17:59:29 #2 store] 
+Configuration path: ?
+

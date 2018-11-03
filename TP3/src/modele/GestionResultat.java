@@ -28,6 +28,8 @@ public class GestionResultat {
 	public void InscrireResulat(String nomEquipeA, String nomEquipeB, int scoreEquipeA, int scoreEquipeB)
 			throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
+			
 			// Verifier si resultat equipeA contre EquipeB existe
 			Resultat tupleResultat = resultats.getResultat(nomEquipeA,nomEquipeB);
 			//Si pas de match retour n'est autorisé
@@ -63,6 +65,7 @@ public class GestionResultat {
 	 */
 	public void supprimerResultat(String nomEquipeA, String nomEquipeB) throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
 			
 			Resultat tupleNewResultat = resultats.getResultat(nomEquipeA, nomEquipeB);
 			// Verifier si resultat existe
@@ -84,6 +87,7 @@ public class GestionResultat {
 	 */
 	public void modifierResultat(String nomEquipeA, String nomEquipeB, int scoreEquipeA, int scoreEquipeB) throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
 			
 			// Verifier si resultat existe
 			if (!resultats.existe(nomEquipeA, nomEquipeB))

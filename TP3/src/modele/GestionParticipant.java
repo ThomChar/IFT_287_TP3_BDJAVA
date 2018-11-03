@@ -1,7 +1,6 @@
 package modele;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import CentreSportif.IFT287Exception;
@@ -39,7 +38,7 @@ public class GestionParticipant {
 	public void ajouter(String matricule, String prenom, String nom, String motDePasse)
 			throws IFT287Exception, Exception {
 		try {
-			
+			cx.demarreTransaction();
 			// Vérifie si le participant existe déjà
 			if (participants.existe(matricule))
 				throw new IFT287Exception("Particpant existe déjà : " + matricule);
@@ -47,7 +46,6 @@ public class GestionParticipant {
 			// Ajout du participant dans la table des participants
 			Participant p = new Participant(matricule, prenom, nom, motDePasse);
 			participants.creer(p);
-			
 			cx.commit();
 		} catch (Exception e) {
 			cx.rollback();
@@ -63,6 +61,7 @@ public class GestionParticipant {
 	public void modifierNomPrenom(String matricule, String prenom, String nom)
 			throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
 			
 			// Vérifie si le participant existe bien
 			if (!participants.existe(matricule))
@@ -89,6 +88,8 @@ public class GestionParticipant {
 			throws IFT287Exception, Exception {
 		
 		try {
+			cx.demarreTransaction();
+			
 			// Vérifie si le participant existe bien
 			if (!participants.existe(matricule))
 				throw new IFT287Exception("Le particpant n'existe pas pour le matricule : " + matricule);
@@ -114,6 +115,8 @@ public class GestionParticipant {
 	 */
 	public void postulerAUneEquipe(String nomEquipe, String matricule) throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
+			
 			// Vérifie si le participant et l'équipe existent
 			if (!participants.existe(matricule))
 				throw new IFT287Exception("Participant "+matricule+" n'existe pas");
@@ -158,6 +161,8 @@ public class GestionParticipant {
 	 */
 	public void accepteParEquipe(String nomEquipe, String matricule) throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
+			
 			// Vérifie si le participant et l'équipe existent
 			if (!participants.existe(matricule))
 				throw new IFT287Exception("Participant "+matricule+" n'existe pas");
@@ -200,6 +205,8 @@ public class GestionParticipant {
 	 */
 	public void refuseParEquipe(String nomEquipe, String matricule) throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
+			
 			// Vérifie si le participant existe
 			if (!participants.existe(matricule))
 				throw new IFT287Exception("Particpant n'existe pas : " + matricule);
@@ -233,6 +240,8 @@ public class GestionParticipant {
 	 */
 	public void supprimeParEquipe(String nomEquipe, String matricule) throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
+			
 			// Vérifie si le participant existe
 			if (!participants.existe(matricule))
 				throw new IFT287Exception("Participant n'existe pas : " + matricule);
@@ -275,6 +284,7 @@ public class GestionParticipant {
 	 */
 	public void supprime(String matricule) throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
 			
 			// Validation
 			Participant p = participants.getParticipant(matricule);
@@ -301,6 +311,8 @@ public class GestionParticipant {
 	 */
 	public List<Participant> lectureParticipants(String nomEquipe)
 			throws IFT287Exception, Exception {
+		cx.demarreTransaction();
+		
 		// Validation
 		Equipe tupleEquipe = equipes.getEquipe(nomEquipe);
 		if (tupleEquipe == null)
@@ -322,6 +334,8 @@ public class GestionParticipant {
 	 *  @throws SQLException, IFT287Exception, Exception
 	 */
 	public void affichageParticipants(String nomEquipe) throws IFT287Exception, Exception {
+		cx.demarreTransaction();
+		
 		// Validation
 		Equipe tupleEquipe = equipes.getEquipe(nomEquipe);
 		if (tupleEquipe == null)
@@ -345,14 +359,16 @@ public class GestionParticipant {
 	 *  @throws SQLException, IFT287Exception, Exception
 	 */
 	public void affichageParticipants() throws IFT287Exception, Exception {
-			List<Participant> listeParticipant = participants.lectureParticipants();
-			
-			for(Participant p : listeParticipant)
-	        {
-	            System.out.println(p.toString());
-	        }
-			
-			cx.commit();
+		cx.demarreTransaction();
+		
+		List<Participant> listeParticipant = participants.lectureParticipants();
+		
+		for(Participant p : listeParticipant)
+        {
+            System.out.println(p.toString());
+        }
+		
+		cx.commit();
 	}
 
 }

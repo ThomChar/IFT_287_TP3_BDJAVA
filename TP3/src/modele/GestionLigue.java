@@ -36,19 +36,17 @@ public class GestionLigue {
     {
     	try
         {
-    		
-        	Ligue tupleLigue = new Ligue(nomLigue, nbJoueurMaxParEquipe);
-            // Vérifie si la ligue existe déjà
+    		cx.demarreTransaction();
         	
+            // Vérifie si la ligue existe déjà
             if (ligues.existe(nomLigue))
                 throw new IFT287Exception("Ligue "+nomLigue+" existe déjà : ");
-            if (!tupleLigue.testNewEquipes(nomLigue))
-                throw new IFT287Exception("Ligue "+nomLigue+" comprend une équipe déjà dans une autre ligue ");
-
+            
+            Ligue tupleLigue = new Ligue(nomLigue, nbJoueurMaxParEquipe);
+            
             // Ajout de la ligue dans la table des ligues
             ligues.ajouter(tupleLigue);
             
-            // Commit
             cx.commit();
         }
         catch (Exception e)
@@ -67,6 +65,8 @@ public class GestionLigue {
     {
         try
         {
+        	cx.demarreTransaction();
+        	
             // Vérifie si la ligue existe déjà
             if (!ligues.existe(nomLigue))
                 throw new IFT287Exception("Ligue "+nomLigue+" existe déjà : ");
@@ -77,7 +77,6 @@ public class GestionLigue {
             // Ajout de la ligue dans la table des ligues
             ligues.modifierLigue(tupleLigue);
             
-            // Commit
             cx.commit();
         }
         catch (Exception e)
@@ -97,6 +96,8 @@ public class GestionLigue {
     {
         try
         {
+        	cx.demarreTransaction();
+        	
             // Validation
             Ligue tupleLigue = ligues.getLigue(nomLigue);
             if (tupleLigue == null)

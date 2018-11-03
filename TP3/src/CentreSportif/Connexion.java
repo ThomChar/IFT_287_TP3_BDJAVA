@@ -39,14 +39,14 @@ public class Connexion
     {
         if (serveur.equals("local"))
         {
-            emf = Persistence.createEntityManagerFactory(bd);
+            emf = Persistence.createEntityManagerFactory(bd +".odb");
         }
         else if (serveur.equals("dinf"))
         {
         	Map<String, String> properties = new HashMap<String, String>();
         	  properties.put("javax.persistence.jdbc.user", user);
         	  properties.put("javax.persistence.jdbc.password", pass);
-        	emf = Persistence.createEntityManagerFactory("objectdb://bd-info2.dinf.usherbrooke.ca:5432/"+user+"/" + bd, properties);
+        	emf = Persistence.createEntityManagerFactory("objectdb://bd-info2.dinf.usherbrooke.ca:6136/"+user+"/" + bd, properties);
         }
         else
         {

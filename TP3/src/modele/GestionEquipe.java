@@ -41,8 +41,9 @@ public class GestionEquipe {
 	public void ajouter(String nomEquipe, String matriculeCap, String nomLigue) throws IFT287Exception, Exception {
 
 		try {
+			cx.demarreTransaction();
+			
 			// Vérifie si l equipe existe déjà
-
 			if (equipes.testDejaCapitaine(matriculeCap))
 				throw new IFT287Exception("Ce participant est deja capitaine : ");
 			if (!ligues.existe(nomLigue))
@@ -73,6 +74,8 @@ public class GestionEquipe {
 	 */
 	public void supprime(String nomEquipe) throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
+			
 			// Validation
 			Equipe tupleEquipe = equipes.getEquipe(nomEquipe);
 			if (tupleEquipe == null)
@@ -101,6 +104,8 @@ public class GestionEquipe {
 	 */
 	public void changerCapitaine(String nomEquipe, String matriculeCap) throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
+			
 			// Vérifie si l equipe existe déjà
 			if (!equipes.existe(nomEquipe))
 				throw new IFT287Exception("Equipe " + nomEquipe + " n'existe pas : ");
@@ -139,8 +144,10 @@ public class GestionEquipe {
 	 *             Exception
 	 */
 	public void affichageEquipe(String nomEquipe) throws IFT287Exception, Exception {
-		// Validation
 		try {
+			cx.demarreTransaction();
+			
+			// Validation
 			Equipe tupleEquipe = equipes.getEquipe(nomEquipe);
 			if (tupleEquipe == null)
 				throw new IFT287Exception("Equipe inexistante: " + nomEquipe);
@@ -168,8 +175,10 @@ public class GestionEquipe {
 	 *             Exception
 	 */
 	public List<Equipe> lectureEquipesLigue(String nomLigue) throws IFT287Exception, Exception {
-		// Validation
 		try {
+			cx.demarreTransaction();
+			
+			// Validation
 			Ligue tupleLigue = ligues.getLigue(nomLigue);
 			if (tupleLigue == null)
 				throw new IFT287Exception("Ligue inexistant: " + nomLigue);
@@ -224,6 +233,8 @@ public class GestionEquipe {
 	 */
 	public void afficherEquipesLigue(String nomLigue) throws IFT287Exception, Exception {
 		try {
+			cx.demarreTransaction();
+			
 			// Validation
 			Ligue tupleLigue = ligues.getLigue(nomLigue);
 			if (tupleLigue == null)
