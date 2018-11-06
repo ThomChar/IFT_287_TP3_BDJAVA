@@ -14,32 +14,38 @@ import javax.persistence.OrderBy;
 
 @Entity
 public class Equipe {
-	
-	//Attributes
-	
 	@Id
     @GeneratedValue
     private long id_equipe;
+	
+	//Attributes
 	private String nomEquipe;
 	
 	@OneToMany(mappedBy = "equipe", cascade = CascadeType.ALL)
 	@OrderBy("nom")
 	private List<Participant> listParticipants;
 	
-	@OneToOne								// Demander si nécessaire pour un seul objet lié
+	@OneToOne
 	private Participant capitaine;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Ligue ligue;
 	
-	@OneToMany(mappedBy = "id_resultat", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Resultat> listResultats;
 	
-	//Builders
-	
+	/**
+	 * Constructeur par défaut
+	 */
 	public Equipe() {
 	}
 	
+	/**
+	 * Constructeur de confort à 3 éléments
+	 * @param ligue
+	 * @param nomEquipe
+	 * @param capitaine
+	 */
 	public Equipe(Ligue ligue, String nomEquipe, Participant capitaine) {
 		super();
 		this.nomEquipe = nomEquipe;
@@ -49,8 +55,9 @@ public class Equipe {
 		this.listResultats = new LinkedList<Resultat>();
 	}
 
-	//Getters & Setters
-
+	/**
+	 * Les getteurs et setteurs
+	 */
 	public String getNomEquipe() {
 		return nomEquipe;
 	}
@@ -93,7 +100,7 @@ public class Equipe {
 	
 	/**
 	 * Ajoute un participant à la liste de participants d'une equipe
-	 * @param equipe
+	 * @param participant
 	 */
 	public void ajouterJoueur(Participant participant) {
 		listParticipants.add(participant);
@@ -133,10 +140,17 @@ public class Equipe {
 
 	@Override
 	public String toString() {
-		return "\nEquipe [nomEquipe=" + nomEquipe + ", matriculeCap="+ capitaine.getMatricule() + ", nomLigue=" + ligue.getNomLigue() + ",\nlistParticipants=" + listParticipants + ",\nlistResultats=" + listResultats + "]";
+		String cap = "null";
+		if(capitaine != null)
+			cap = capitaine.getMatricule();
+		
+		return "\nEquipe [nomEquipe=" + nomEquipe + ", matriculeCap="+ cap + ", nomLigue=" + ligue.getNomLigue() + ",\nlistParticipants=" + listParticipants + ",\nlistResultats=" + listResultats + "]";
 	}
 	public String toStringSimpleEquipe() {
-		return "\nEquipe [nomEquipe=" + nomEquipe + ", matriculeCap="+ capitaine.getMatricule() + ", nomLigue=" + ligue.getNomLigue() + "]";
+		String cap = "null";
+		if(capitaine != null)
+			cap = capitaine.getMatricule();
+		
+		return "\nEquipe [nomEquipe=" + nomEquipe + ", matriculeCap="+ cap + ", nomLigue=" + ligue.getNomLigue() + "]";
 	}
-
 }

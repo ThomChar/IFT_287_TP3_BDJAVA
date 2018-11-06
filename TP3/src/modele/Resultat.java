@@ -8,26 +8,32 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Resultat {
- 
-	//Attributes
 	
 	@Id
     @GeneratedValue
     private long id_resultat;
 	
+	//Attributes
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Equipe equipeA;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Equipe equipeB;
-	
 	private int scoreEquipeA;
 	private int scoreEquipeB;
 		
-	//Builders
-	
+	/**
+	 * Constructeur par défaut	
+	 */
 	public Resultat() {
 	}
 	
+	/**
+	 * Constructeur à 4 arguments
+	 * @param equipeA
+	 * @param equipeB
+	 * @param scoreEquipeA
+	 * @param scoreEquipeB
+	 */
 	public Resultat(Equipe equipeA, Equipe equipeB, int scoreEquipeA, int scoreEquipeB) {
 		super();
 		this.equipeA = equipeA;
@@ -37,8 +43,9 @@ public class Resultat {
 		this.scoreEquipeB = scoreEquipeB;
 	}
 	
-	//Getters & Setters
-	
+	/**
+	 * Les getteurs et setters
+	 */
 	public Equipe getEquipeA() {
 		return equipeA;
 	}
@@ -70,7 +77,4 @@ public class Resultat {
 		return "\nResultat [nomEquipeA=" + equipeA.getNomEquipe() + ", nomEquipeB=" + equipeB.getNomEquipe() + ", scoreEquipeA=" + scoreEquipeA
 				+ ", scoreEquipeB=" + scoreEquipeB + "]";
 	}
-	
-	
-	
 }

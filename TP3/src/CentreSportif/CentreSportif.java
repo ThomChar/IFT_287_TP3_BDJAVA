@@ -135,7 +135,7 @@ public class CentreSportif
                 else if(command.equals("supprimerParticipant")) 
                 {
                 	String matricule = readString(tokenizer);
-                	gestionParticipant.supprime(matricule);
+                	gestionParticipant.supprimer(matricule);
                 }
                 else if(command.equals("ajouterLigue")) 
                 {
@@ -146,7 +146,7 @@ public class CentreSportif
                 else if(command.equals("supprimerLigue"))
                 {
                 	String nomLigue = readString(tokenizer);
-                	gestionLigue.supprime(nomLigue);
+                	gestionLigue.supprimer(nomLigue);
                 }
                 else if(command.equals("ajouterEquipe"))
                 {
@@ -154,7 +154,6 @@ public class CentreSportif
                 	String nomEquipe = readString(tokenizer);
                 	String matriculeCap = readString(tokenizer);
                 	gestionEquipe.ajouter(nomEquipe, matriculeCap, nomLigue);
-                	gestionParticipant.accepteParEquipe(nomEquipe, matriculeCap);
                 }
                 else if(command.equals("changerCapitaine"))
                 {
@@ -166,7 +165,7 @@ public class CentreSportif
                 {
                 	String nomEquipe = readString(tokenizer);
                 	String matricule = readString(tokenizer);
-                	gestionParticipant.accepteParEquipe(nomEquipe, matricule);
+                	gestionParticipant.postulerAUneEquipe(nomEquipe, matricule);
                 }
                 else if(command.equals("accepterJoueur"))	
                 {

@@ -7,42 +7,33 @@ import CentreSportif.Connexion;
 public class Resultats {
 
 	private TypedQuery<Resultat> stmtExiste;
-	private TypedQuery<Integer> stmtNbMGagne;
-	private TypedQuery<Integer> stmtNbMPerdu;
-	private TypedQuery<Integer> stmtNbMNul;
+	private TypedQuery<Long> stmtNbMGagne;
+	private TypedQuery<Long> stmtNbMPerdu;
+	private TypedQuery<Long> stmtNbMNul;
 	private TypedQuery<Resultat> stmtListTousResultats;
 	private TypedQuery<Resultat> stmtListTousResultatsEquipe;
-
-	// private TypedQuery<Resultat> stmtUpdate;
-	// private TypedQuery<Resultat> stmtDelete;
-
 	private Connexion cx;
 
 	/**
 	 * Creation d'une instance.
+	 * @param cx
 	 */
 	public Resultats(Connexion cx) {
 		this.cx = cx;
 		stmtExiste = cx.getConnection().createQuery(
-				"select r from Resultat r where equipeA.nomEquipe = :nomEquipeA and equipeB.nomEquipe = :nomEquipeB",
+				"select r from Resultat r where (equipeA.nomEquipe = :nomEquipeA and equipeB.nomEquipe = :nomEquipeB) or (equipeA.nomEquipe = :nomEquipeB and equipeB.nomEquipe = :nomEquipeA)",
 				Resultat.class);
-		/*
-		 * stmtUpdate = cx.getConnection().getConnection(
-		 * "update Resultat set scoreEquipeA = ?, scoreEquipeB = ? where nomEquipeA = ? and nomEquipeA = ?"
-		 * ,Resulat.class); stmtDelete = cx.getConnection()
-		 * .getConnection("delete from Resultat where (nomEquipeA = ? and nomEquipeB = ?) or (nomEquipeB = ? and nomEquipeA = ?)"
-		 * ,Resulat.class);
-		 */
+
 		stmtListTousResultats = cx.getConnection().createQuery("select r from Resultat r", Resultat.class);
 		stmtNbMGagne = cx.getConnection().createQuery(
-				"select count(*) AS nb from Resultat r where (equipeA.nomEquipe = :nomEquipeA and scoreEquipeA > scoreEquipeB) or (equipeB.nomEquipe = :nomEquipeB and scoreEquipeA < scoreEquipeB)",
-				Integer.class);
+				"select count(r) AS nb from Resultat r where (equipeA.nomEquipe = :nomEquipeA and scoreEquipeA > scoreEquipeB) or (equipeB.nomEquipe = :nomEquipeB and scoreEquipeA < scoreEquipeB)",
+				Long.class);
 		stmtNbMPerdu = cx.getConnection().createQuery(
-				"select count(*) AS nb from Resultat r where (equipeA.nomEquipe = :nomEquipeA and scoreEquipeA < scoreEquipeB) or (equipeB.nomEquipe = :nomEquipeB and scoreEquipeA > scoreEquipeB)",
-				Integer.class);
+				"select count(r) AS nb from Resultat r where (equipeA.nomEquipe = :nomEquipeA and scoreEquipeA < scoreEquipeB) or (equipeB.nomEquipe = :nomEquipeB and scoreEquipeA > scoreEquipeB)",
+				Long.class);
 		stmtNbMNul = cx.getConnection().createQuery(
-				"select count(*) AS nb from Resultat r where (equipeA.nomEquipe = :nomEquipeA or equipeB.nomEquipe = :nomEquipeB) and scoreEquipeA = scoreEquipeB",
-				Integer.class);
+				"select count(r) AS nb from Resultat r where (equipeA.nomEquipe = :nomEquipeA or equipeB.nomEquipe = :nomEquipeB) and scoreEquipeA = scoreEquipeB",
+				Long.class);
 		stmtListTousResultatsEquipe = cx.getConnection().createQuery(
 				"select r from Resultat r where equipeA.nomEquipe = :nomEquipeA or equipeB.nomEquipe = :nomEquipeB",
 				Resultat.class);
@@ -51,14 +42,17 @@ public class Resultats {
 
 	/**
 	 * Retourner la connexion associée.
+	 * @returncx
 	 */
 	public Connexion getConnexion() {
 		return cx;
 	}
 
 	/**
-	 * Vérifie si un resultat existe.
-	 * 
+	 * Vérifier si un résultat existe
+	 * @param nomEquipeA
+	 * @param nomEquipeB
+	 * @return vrai ou faux
 	 */
 	public boolean existe(String nomEquipeA, String nomEquipeB) {
 		stmtExiste.setParameter("nomEquipeA", nomEquipeA);
@@ -68,7 +62,9 @@ public class Resultats {
 
 	/**
 	 * Lecture d'un resultat.
-	 * 
+	 * @param nomEquipeA
+	 * @param nomEquipeB
+	 * @return un résultat
 	 */
 	public Resultat getResultat(String nomEquipeA, String nomEquipeB) {
 		stmtExiste.setParameter("nomEquipeA", nomEquipeA);
@@ -82,19 +78,20 @@ public class Resultats {
 	}
 
 	/**
-	 * Ajout d'un nouveau resultat
-	 * 
+	 * Ajout d'un nouveau résultat
+	 * @param resultat
+	 * @return le résultat créé
 	 */
 	public Resultat creer(Resultat resultat) {
-		 // Ajout d'une equipe.
         cx.getConnection().persist(resultat);
-        
         return resultat;
 	}
 
-	 /**
-     * Suppression d'un resultat.
-     */
+	/**
+	 * Supprimer un résultat
+	 * @param resultat
+	 * @return vrai ou faux
+	 */
     public boolean supprimer(Resultat resultat)
     {
         if(resultat != null)
@@ -104,66 +101,45 @@ public class Resultats {
         }
         return false;
     }
-	
+
     /**
-     * Modifie un resultat dans la base de donnees.
+     * Obtenir nombre matchs gagnés d'une équipe.
+     * @param nomEquipe
+     * @return nombre de matchs gagnés
      */
-    public Resultat modifierResultat(Resultat resultat)
-    {
-        // Ajout de la ligue.
-        cx.getConnection().persist(resultat);
-        
-        return resultat;
-    }
-
-	/**
-	 * Modifier le resultat pour un match.
-	 * 
-	 */
-
-	/*public int modifier(String nomEquipeA, String nomEquipeB, int scoreEquipeA, int scoreEquipeB) {
-		stmtUpdate.setString(3, nomEquipeA);
-		stmtUpdate.setString(4, nomEquipeB);
-		stmtUpdate.setInt(1, scoreEquipeA);
-		stmtUpdate.setInt(2, scoreEquipeB);
-		return stmtUpdate.executeUpdate();
-	}*/
-
-
-	/**
-	 * Obtenir nombre match gagné d'une équipe.
-	 * 
-	 */
-	public int ObtenirNbMGagne(String nomEquipe) {
+	public long ObtenirNbMGagne(String nomEquipe) {
 		stmtNbMGagne.setParameter("nomEquipeA", nomEquipe);
 		stmtNbMGagne.setParameter("nomEquipeB", nomEquipe);
 		return stmtNbMGagne.getSingleResult();
 	}
 
 	/**
-	 * Obtenir nombre match perdu d'une équipe.
-	 * 
+	 * Obtenir le nombre de matchs perdus d'une équipe
+	 * @param nomEquipe
+	 * @return le nombre de matchs perdus
 	 */
-	public int ObtenirNbMPerdu(String nomEquipe) {
+	public long ObtenirNbMPerdu(String nomEquipe) {
 		stmtNbMPerdu.setParameter("nomEquipeA", nomEquipe);
 		stmtNbMPerdu.setParameter("nomEquipeB", nomEquipe);
 		return stmtNbMPerdu.getSingleResult();
 	}
 
 	/**
-	 * Obtenir nombre match nul d'une équipe.
-	 * 
+	 * Obtenir nombre matchs nuls d'une équipe.
+	 * @param nomEquipe
+	 * @return le nombre matchs nuls d'une équipe.
 	 */
-	public int ObtenirNbMNul(String nomEquipe) {
+	public long ObtenirNbMNul(String nomEquipe) {
 		stmtNbMNul.setParameter("nomEquipeA", nomEquipe);
 		stmtNbMNul.setParameter("nomEquipeB", nomEquipe);
 		return stmtNbMNul.getSingleResult();
 	}
 
-	 /**
-     * Retourne l'ensemble des resultats d'une equipe de la base de données
-     * @return
-     */
+	/**
+	 * Retourne l'ensemble des resultats d'une equipe
+	 * @param nomEquipe
+	 * @return liste de résultats
+	 */
     public List<Resultat> calculerListeResultatsEquipe(String nomEquipe)
     {
     	stmtListTousResultatsEquipe.setParameter("nomEquipeA", nomEquipe);
@@ -172,43 +148,11 @@ public class Resultats {
     }    
 
     /**
-     * Retourne l'ensemble des resultats de la base de données
-     * @return
+     * Retourner la liste de tous les résultats
+     * @return liste de résultats
      */
     public List<Resultat> calculerListeResultats()
     {
         return stmtListTousResultats.getResultList();
     }
-    
-	/**
-	 * Afficher les resultats pour un match.
-	 */
-	/*public void afficher() {
-		ResultSet rset = stmtDispResultat.executeQuery();
-		rset.close();
-	}*/
-
-	/**
-	 * Lecture des resultats de l'équipe
-	 * 
-	 */
-	/*public ArrayList<Resultat> lectureResultats(String nomEquipe) {
-		stmtDispResultatsEquipe.setString(1, nomEquipe);
-		stmtDispResultatsEquipe.setString(2, nomEquipe);
-
-		ResultSet rset = stmtDispResultatsEquipe.executeQuery();
-		ArrayList<Resultat> listResultats = new ArrayList<Resultat>();
-
-		while (rset.next()) {
-			Resultat tupleResultat = new Resultat();
-			tupleResultat.setNomEquipeA(rset.getString("nomEquipeA"));
-			tupleResultat.setNomEquipeB(rset.getString("nomEquipeB"));
-			tupleResultat.setScoreEquipeA(rset.getInt("scoreEquipeA"));
-			tupleResultat.setScoreEquipeB(rset.getInt("scoreEquipeB"));
-			listResultats.add(tupleResultat);
-		}
-		rset.close();
-		return listResultats;
-	}*/
-
 }

@@ -12,12 +12,12 @@ import javax.persistence.OrderBy;
 
 @Entity
 public class Ligue {
-
-	// Attributes
-
+	
 	@Id
 	@GeneratedValue
 	private long id_ligue;
+	
+	// Attributes
 	private String nomLigue;
 	
 	@OneToMany(mappedBy = "ligue", cascade = CascadeType.ALL)
@@ -25,11 +25,30 @@ public class Ligue {
 	private List<Equipe> listEquipes;
 	private int nbJoueurMaxParEquipe;
 
-	// Builders
-
+	/**
+	 * constructeur par défaut
+	 */
 	public Ligue() {
 	}
-
+	
+	/**
+	 * constructeur de confort à 2 arguments
+	 * @param nomLigue
+	 * @param nbJoueurMaxParEquipe
+	 */
+	public Ligue(String nomLigue, int nbJoueurMaxParEquipe) {
+		super();
+		this.nomLigue = nomLigue;
+		this.listEquipes = new LinkedList<Equipe>(); //new LinkedList<Equipe>()
+		this.setNbJoueurMaxParEquipe(nbJoueurMaxParEquipe);
+	}
+	
+	/**
+	 * Constructeur de confort à 3 arguments
+	 * @param nomLigue
+	 * @param listEquipes
+	 * @param nbJoueurMaxParEquipe
+	 */
 	public Ligue(String nomLigue, List<Equipe> listEquipes, int nbJoueurMaxParEquipe) {
 		super();
 		this.nomLigue = nomLigue;
@@ -37,15 +56,9 @@ public class Ligue {
 		this.setNbJoueurMaxParEquipe(nbJoueurMaxParEquipe);
 	}
 
-	public Ligue(String nomLigue, int nbJoueurMaxParEquipe) {
-		super();
-		this.nomLigue = nomLigue;
-		this.listEquipes = new LinkedList<Equipe>();
-		this.setNbJoueurMaxParEquipe(nbJoueurMaxParEquipe);
-	}
-
-	// Getters & Setters
-
+	/**
+	 * Les getters et setters
+	 */
 	public String getNomLigue() {
 		return nomLigue;
 	}
@@ -91,28 +104,4 @@ public class Ligue {
 		return "Ligue [nomLigue=" + nomLigue + ", listEquipes=" + listEquipes + ", nbJoueurMaxParEquipe="
 				+ nbJoueurMaxParEquipe + "]";
 	}
-
-	/**
-	 * Véririe si
-	 * 
-	 * @return
-	 */
-	public boolean isActive() {
-		boolean testIsActive = true;
-		if (this.getListEquipes().size() == 0) {
-			testIsActive = false;
-		}
-		return testIsActive;
-	}
-
-	public boolean testNewEquipes(String nomLigue) {
-		boolean testNewEquipe = true;
-		for (Equipe equipe : this.listEquipes) {
-			if (!equipe.getLigue().getNomLigue().equals(nomLigue)) {
-				testNewEquipe = false;
-			}
-		}
-		return testNewEquipe;
-	}
-
 }

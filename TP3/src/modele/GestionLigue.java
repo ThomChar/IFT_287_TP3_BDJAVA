@@ -8,7 +8,7 @@ public class GestionLigue {
 
   	private Ligues ligues;
   	@SuppressWarnings("unused")
-	private Equipes equipe;			// unused si suppression en cascade
+	private Equipes equipe;
   	private Participants participant;
     private Connexion cx;
 
@@ -19,19 +19,19 @@ public class GestionLigue {
     {
         this.cx = ligues.getConnexion();
         if (participant.getConnexion() != ligues.getConnexion() || equipe.getConnexion() != ligues.getConnexion())
-            throw new IFT287Exception("Les instances de ligue, particpant et equipe n'utilisent pas la même connexion au serveur");
+        	throw new IFT287Exception("Les différents gestionnaires (equipes, partcipants, ligues) n'utilisent pas la même connexion au serveur");
         this.ligues = ligues;
         this.equipe = equipe;
         this.participant = participant;
     }
 
-    
     /**
-     * Ajout d'une nouvelle ligue dans la base de données. S'il existe déjà , une
-     * exception est levée.
-     * 
-     *  @throws SQLException, IFT287Exception, Exception
-     */		
+     * Ajout d'une nouvelle ligue. S'il existe déjà , une exception est levée.
+     * @param nomLigue
+     * @param nbJoueurMaxParEquipe
+     * @throws IFT287Exception
+     * @throws Exception
+     */
     public void ajouterLigue(String nomLigue, int nbJoueurMaxParEquipe) throws IFT287Exception, Exception
     {
     	try
@@ -40,7 +40,7 @@ public class GestionLigue {
         	
             // Vérifie si la ligue existe déjà
             if (ligues.existe(nomLigue))
-                throw new IFT287Exception("Ligue "+nomLigue+" existe déjà : ");
+                throw new IFT287Exception("La ligue "+nomLigue+" existe déjà.");
             
             Ligue tupleLigue = new Ligue(nomLigue, nbJoueurMaxParEquipe);
             
@@ -57,10 +57,12 @@ public class GestionLigue {
     }
     
     /**
-     * Modifier le nombre de joueur max par equipe pour une ligue dans la base de données. 
-     * 
-     *  @throws SQLException, IFT287Exception, Exception
-     */		
+     * Modifier le nombre de joueur max par equipe pour une ligue dans la base de données.
+     * @param nomLigue
+     * @param nbJoueurMaxParEquipe
+     * @throws IFT287Exception
+     * @throws Exception
+     */
     public void modifierNombreJoueurMax(String nomLigue, int nbJoueurMaxParEquipe) throws IFT287Exception, Exception
     {
         try
@@ -72,10 +74,9 @@ public class GestionLigue {
                 throw new IFT287Exception("Ligue "+nomLigue+" existe déjà : ");
             
             Ligue tupleLigue = ligues.getLigue(nomLigue);
-        	tupleLigue.setNbJoueurMaxParEquipe(nbJoueurMaxParEquipe);
             
-            // Ajout de la ligue dans la table des ligues
-            ligues.modifierLigue(tupleLigue);
+            // Modifier ligue
+        	tupleLigue.setNbJoueurMaxParEquipe(nbJoueurMaxParEquipe);
             
             cx.commit();
         }
@@ -86,34 +87,30 @@ public class GestionLigue {
         }
     }
         
-    
     /**
-     * Supprime Ligue de la base de données.
-     * 
-     *  @throws SQLException, IFT287Exception, Exception
+     * Supprime Ligue
+     * @param nomLigue
+     * @throws IFT287Exception
+     * @throws Exception
      */
-    public void supprime(String nomLigue) throws IFT287Exception, Exception
+    public void supprimer(String nomLigue) throws IFT287Exception, Exception
     {
         try
         {
         	cx.demarreTransaction();
         	
-            // Validation
+            // Validations
             Ligue tupleLigue = ligues.getLigue(nomLigue);
             if (tupleLigue == null)
                 throw new IFT287Exception("Ligue inexistant: " + nomLigue);
             if (participant.nombreMembresLigue(nomLigue) > 0)
                 throw new IFT287Exception("Ligue " + nomLigue + "a encore des participants actifs");
             
-            // Suppression des equipes de la ligue.
-            /*@SuppressWarnings("unused")
-			int nbEquipe = equipe.supprimerEquipesLigue(nomLigue);*/				// Demander pour suppression cascade
-            // Suppression de la ligue.
+            // suppression de la ligue
             boolean testLigue = ligues.supprimer(tupleLigue);
             if (testLigue == false)
                 throw new IFT287Exception("Ligue " + nomLigue + " inexistante");
-            
-            // Commit
+
             cx.commit();
         }
         catch (Exception e)
@@ -126,7 +123,7 @@ public class GestionLigue {
     /**
      * Affiche toutes les ligues de la BD
      */
-    public void listerLigues()
+    public void afficherLigues()
     {
         cx.demarreTransaction();
         

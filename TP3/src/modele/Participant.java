@@ -22,7 +22,19 @@ public class Participant {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Equipe equipe;
 	
-	//Builders
+	/**
+	 * constructeur par défaut
+	 */
+	public Participant() {
+	}
+	
+	/**
+	 * constructeur à 4 arguments
+	 * @param matricule
+	 * @param prenom
+	 * @param nom
+	 * @param motDePasse
+	 */
 	public Participant(String matricule, String prenom, String nom, String motDePasse) {
 		super();
 		this.matricule = matricule;
@@ -33,6 +45,14 @@ public class Participant {
 		this.statut = null;
 	}
 	
+	/**
+	 * constructeur à 5 éléments
+	 * @param matricule
+	 * @param prenom
+	 * @param nom
+	 * @param motDePasse
+	 * @param equipe
+	 */
 	public Participant(String matricule, String prenom, String nom, String motDePasse, Equipe equipe) {
 		super();
 		this.matricule = matricule;
@@ -43,11 +63,9 @@ public class Participant {
 		this.statut = null;
 	}
 	
-	// Getters & Setters
-
-	public Participant() {
-	}
-
+	/**
+	 * Les getters et setters
+	 */
 	public String getMatricule() {
 		return matricule;
 	}
@@ -90,12 +108,10 @@ public class Participant {
 		this.statut = statut;
 	}
 	
-	@Override
-	public String toString() {
-		return "\nParticipant [matricule=" + matricule + ", prenom=" + prenom + ", nom=" + nom + ", motDePasse="
-				+ motDePasse + " statut=" + statut + "]";
-	}
-
+	/**
+	 * Savoir si un joueur joue dans une équipe
+	 * @return retourne vrai si le joueur joue dans une équipe, sinon faux
+	 */
 	public boolean isActive() {
 		boolean testIsActive = true;
 		if(this.getStatut() == null || this.getStatut().equals("SUPPRIME") || this.getStatut().equals("REFUSE")) {
@@ -104,13 +120,9 @@ public class Participant {
 		return testIsActive;
 	}
 	
-	public boolean equipeIsActive() {
-		boolean testIsActive = true;
-		if(this.getStatut() == null || this.getStatut().equals("SUPPRIME") || this.getStatut().equals("REFUSE")) {
-			testIsActive = false;
-		}
-		return testIsActive;
+	@Override
+	public String toString() {
+		return "\nParticipant [matricule=" + matricule + ", prenom=" + prenom + ", nom=" + nom + ", motDePasse="
+				+ motDePasse + " statut=" + statut + "]";
 	}
-
-	
 }
