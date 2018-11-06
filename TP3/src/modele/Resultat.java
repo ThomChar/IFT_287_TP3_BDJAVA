@@ -35,10 +35,8 @@ public class Resultat {
 	 * @param scoreEquipeB
 	 */
 	public Resultat(Equipe equipeA, Equipe equipeB, int scoreEquipeA, int scoreEquipeB) {
-		super();
 		this.equipeA = equipeA;
 		this.equipeB = equipeB;
-		
 		this.scoreEquipeA = scoreEquipeA;
 		this.scoreEquipeB = scoreEquipeB;
 	}

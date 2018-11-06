@@ -36,7 +36,6 @@ public class Participant {
 	 * @param motDePasse
 	 */
 	public Participant(String matricule, String prenom, String nom, String motDePasse) {
-		super();
 		this.matricule = matricule;
 		this.prenom = prenom;
 		this.nom = nom;
@@ -54,7 +53,6 @@ public class Participant {
 	 * @param equipe
 	 */
 	public Participant(String matricule, String prenom, String nom, String motDePasse, Equipe equipe) {
-		super();
 		this.matricule = matricule;
 		this.prenom = prenom;
 		this.nom = nom;

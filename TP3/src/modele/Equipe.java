@@ -47,7 +47,6 @@ public class Equipe {
 	 * @param capitaine
 	 */
 	public Equipe(Ligue ligue, String nomEquipe, Participant capitaine) {
-		super();
 		this.nomEquipe = nomEquipe;
 		this.listParticipants = new LinkedList<Participant>();
 		this.capitaine = capitaine;

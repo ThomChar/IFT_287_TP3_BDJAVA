@@ -907,3 +907,50 @@ New type java.util.LinkedList<modele.Resultat>
 [2018-11-05 23:36:29 #14 type.registry] 
 New type java.util.LinkedList<modele.Participant>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-05 23:50:10 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 14444@LAPTOP-49CGENSA
+
+[2018-11-05 23:50:10 #2 store] 
+Configuration path: ?
+
+[2018-11-05 23:50:11 #3 type.registry] 
+New type modele.Ligue
+
+[2018-11-05 23:50:11 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-05 23:50:11 #5 type.registry] 
+New type modele.Equipe
+
+[2018-11-05 23:50:11 #6 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-05 23:50:11 #7 type.registry] 
+New type modele.Resultat
+
+[2018-11-05 23:50:11 #8 type.registry] 
+New type modele.Participant
+
+[2018-11-05 23:50:11 #9 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-05 23:50:11 #10 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-05 23:50:11 #11 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2018-11-05 23:50:11 #12 type.registry] 
+New type java.util.LinkedList<modele.Equipe>
+
+[2018-11-05 23:50:11 #13 type.registry] 
+New type java.util.LinkedList<modele.Resultat>
+
+[2018-11-05 23:50:11 #14 type.registry] 
+New type java.util.LinkedList<modele.Participant>
+
+[2018-11-05 23:50:34 #15 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is closed by 14444@LAPTOP-49CGENSA
+

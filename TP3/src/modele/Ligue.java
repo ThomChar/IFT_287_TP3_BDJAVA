@@ -37,7 +37,6 @@ public class Ligue {
 	 * @param nbJoueurMaxParEquipe
 	 */
 	public Ligue(String nomLigue, int nbJoueurMaxParEquipe) {
-		super();
 		this.nomLigue = nomLigue;
 		this.listEquipes = new LinkedList<Equipe>(); //new LinkedList<Equipe>()
 		this.setNbJoueurMaxParEquipe(nbJoueurMaxParEquipe);
