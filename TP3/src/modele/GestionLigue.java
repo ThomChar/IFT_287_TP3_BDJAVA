@@ -98,7 +98,6 @@ public class GestionLigue {
         try
         {
         	cx.demarreTransaction();
-        	
             // Validations
             Ligue tupleLigue = ligues.getLigue(nomLigue);
             if (tupleLigue == null)

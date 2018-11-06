@@ -17,7 +17,7 @@ import modele.Participants;
 import modele.Resultats;
 
 import java.sql.*;
-//Les paramètres pour exécuter notre programme dinf ift287_23db ift287_23 paique
+//Les paramètres pour exécuter notre programme dinf ift287_23db.odb ift287_23 paique
 /**
  * Fichier de base pour le TP2 du cours IFT287
  *

@@ -39,7 +39,7 @@ public class Connexion
     {
         if (serveur.equals("local"))
         {
-            emf = Persistence.createEntityManagerFactory(bd +".odb");
+            emf = Persistence.createEntityManagerFactory(bd);
         }
         else if (serveur.equals("dinf"))
         {

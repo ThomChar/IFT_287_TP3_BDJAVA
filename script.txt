@@ -1,0 +1,70 @@
+inscrireParticipant John Smith MotDePasse 01020304
+inscrireParticipant Harry Potter GWeasley 05321485
+inscrireParticipant Ron Weasley HermiG 05325415
+inscrireParticipant Drago Malfois VdMort 05947254
+inscrireParticipant Drago Malfois VdMort 05947254
+inscrireParticipant p1nom p1prenom p1mdp p1
+inscrireParticipant p2nom p2prenom p2mdp p2
+inscrireParticipant p3nom p3prenom p3mdp p3
+inscrireParticipant p4nom p4prenom p4mdp p4
+inscrireParticipant p5nom p5prenom p5mdp p5
+inscrireParticipant p6nom p6prenom p6mdp p6
+
+supprimerParticipant 01020304
+
+ajouterLigue Quidditch 7
+ajouterLigue Quidditch 7
+ajouterLigue Soccer2A 11
+
+supprimerLigue Soccer2A
+
+ajouterEquipe Quidditch Griffondor 05321485
+ajouterEquipe Quidditch Griffondor 05321485
+ajouterEquipe Quidditch Serpentard 05947254
+
+afficherEquipes
+
+ajouterJoueur Griffondor 05321485
+ajouterJoueur Griffondor 05325415
+ajouterJoueur Griffondor 05947254
+
+accepterJoueur Griffondor 05321485
+accepterJoueur Griffondor 05325415
+
+supprimerJoueur Griffondor 05325415
+
+ajouterJoueur Griffondor 05325415
+accepterJoueur Griffondor 05325415
+refuserJoueur Griffondor 05947254
+ajouterJoueur Serpentard 05947254
+accepterJoueur Serpentard 05947254
+
+ajouterJoueur Griffondor p1
+ajouterJoueur Griffondor p1
+ajouterJoueur Griffondor p2
+ajouterJoueur Griffondor p3
+ajouterJoueur Griffondor p4
+ajouterJoueur Griffondor p5
+ajouterJoueur Griffondor p6
+
+accepterJoueur Griffondor p1
+accepterJoueur Griffondor p1
+accepterJoueur Griffondor p2
+accepterJoueur Griffondor p3
+accepterJoueur Griffondor p4
+accepterJoueur Griffondor p5
+accepterJoueur Griffondor p6
+
+ajouterResultat Griffondor 150 Serpentard 60
+ajouterResultat Griffondor 150 Serpentard 60
+ajouterResultat Serpentard 150 Griffondor 60
+
+afficherEquipe Griffondor
+afficherLigue Quidditch
+afficherEquipes
+
+supprimerResultat Serpentard Griffondor
+
+afficherEquipes
+
+quitter

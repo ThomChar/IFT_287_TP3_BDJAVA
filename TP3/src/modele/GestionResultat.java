@@ -39,18 +39,22 @@ public class GestionResultat {
 		try {
 			cx.demarreTransaction();
 			
-			Resultat tupleResultat = resultats.getResultat(nomEquipeA,nomEquipeB);
-			Resultat tupleResultat2 = resultats.getResultat(nomEquipeB,nomEquipeA);
-			
-			// Validations
-			if (tupleResultat != null)
-				throw new IFT287Exception("Resultat deja existant: " + nomEquipeA + " contre " + nomEquipeB );
-			if (tupleResultat2 != null)
-				throw new IFT287Exception("Resultat deja existant: " + nomEquipeB + " contre " + nomEquipeA );
-
 			Equipe eqA = equipes.getEquipe(nomEquipeA);
 			Equipe eqB = equipes.getEquipe(nomEquipeB);
 			
+			// Validations
+			if(eqA == null)
+				throw new IFT287Exception("L'équipe " + nomEquipeA + " n'existe pas.");
+			if(eqB == null)
+				throw new IFT287Exception("L'équipe " + nomEquipeB + " n'existe pas.");
+			if(nomEquipeA.equals(nomEquipeB))
+				throw new IFT287Exception("Les deux équipes saisies sont identiques.");
+			
+			Resultat tupleResultat = resultats.getResultat(nomEquipeA,nomEquipeB);
+			
+			if (tupleResultat != null)
+				throw new IFT287Exception("Resultat deja existant: " + nomEquipeA + " contre " + nomEquipeB );
+
 			// ajout du résulat
 			Resultat tupleNewResultat = new Resultat(eqA, eqB, scoreEquipeA, scoreEquipeB);
 			resultats.creer(tupleNewResultat);
@@ -132,11 +136,13 @@ public class GestionResultat {
 	 * @throws Exception
 	 */
 	public void affichageResultats() throws IFT287Exception, Exception {
+		cx.demarreTransaction();
 		List<Resultat> list = resultats.calculerListeResultats();
 
 		for (Resultat r : list) {
 			System.out.println(r.toString());
 		}
+		cx.commit();
 	}
 	
 	/**
@@ -146,10 +152,12 @@ public class GestionResultat {
 	 * @throws Exception
 	 */
 	public void affichageResultatsEquipe(String nomEquipe) throws IFT287Exception, Exception {
+		cx.demarreTransaction();
 		List<Resultat> list = resultats.calculerListeResultatsEquipe(nomEquipe);
 
 		for (Resultat r : list) {
 			System.out.println(r.toString());
 		}
+		cx.commit();
 	}
 }

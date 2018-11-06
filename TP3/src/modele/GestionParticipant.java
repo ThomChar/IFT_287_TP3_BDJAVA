@@ -188,7 +188,7 @@ public class GestionParticipant {
 			Ligue l = ligues.getLigue(e.getLigue().getNomLigue());
 			
 			if(e.getListParticipants().size() >= l.getNbJoueurMaxParEquipe())
-				throw new IFT287Exception("Impossible d'ajouter un nouveau jour dans l'équipe : " + nomEquipe + ", puisque nombre de joueurs max dépassé.");
+				throw new IFT287Exception("Impossible d'ajouter un nouveau joueur dans l'équipe : " + nomEquipe + ", puisque nombre de joueurs max dépassé.");
 			if(p.getEquipe() != null)
 			{
 				if (p.getStatut().equals("EN ATTENTE")
@@ -244,7 +244,7 @@ public class GestionParticipant {
 					&& p.getEquipe().getNomEquipe().equals(nomEquipe))
 				throw new IFT287Exception("Le Participant selectionné a deja refuse pour cette equipe");
 			if(!p.getStatut().equals("EN ATTENTE"))
-				throw new IFT287Exception("Le joueur ayant le matricule " + matricule + " n'a pas postulé pour une équipe.");
+				throw new IFT287Exception("Le joueur ayant le matricule " + matricule + " n'a pas fait de demande d'adhésion.");
 
 			p.setStatut("REFUSE");
 
@@ -339,17 +339,26 @@ public class GestionParticipant {
 	 * @throws IFT287Exception
 	 * @throws Exception
 	 */
-	public List<Participant> lectureParticipants(String nomEquipe)
-			throws IFT287Exception, Exception {
-		// Validation
-		Equipe tupleEquipe = equipes.getEquipe(nomEquipe);
-		if (tupleEquipe == null)
-			throw new IFT287Exception("Equipe inexistant: " + nomEquipe);
-		if (!tupleEquipe.isActive())
-			throw new IFT287Exception("Equipe " + nomEquipe + "a encore des participants actifs");
-		
-		// lecture des participants
-		return participants.lectureParticipants(nomEquipe);
+	public List<Participant> lectureParticipants(String nomEquipe) throws IFT287Exception, Exception {
+		try {
+			cx.demarreTransaction();
+			// Validation
+			Equipe tupleEquipe = equipes.getEquipe(nomEquipe);
+			if (tupleEquipe == null)
+				throw new IFT287Exception("Equipe inexistant: " + nomEquipe);
+			if (!tupleEquipe.isActive())
+				throw new IFT287Exception("Equipe " + nomEquipe + "a encore des participants actifs");
+			
+			// lecture des participants
+			List<Participant> parts = participants.lectureParticipants(nomEquipe);
+			
+			cx.commit();
+			return parts;
+			
+		} catch (Exception e) {
+			cx.rollback();
+			throw e;
+		}
 	}
 
 	/**
@@ -359,20 +368,27 @@ public class GestionParticipant {
 	 * @throws Exception
 	 */
 	public void affichageParticipants(String nomEquipe) throws IFT287Exception, Exception {
-		// Validation
-		Equipe tupleEquipe = equipes.getEquipe(nomEquipe);
-		if (tupleEquipe == null)
-			throw new IFT287Exception("Equipe inexistant: " + nomEquipe);
-		if (!tupleEquipe.isActive())
-			throw new IFT287Exception("Equipe " + nomEquipe + "a encore des participants actifs");
-		
-		// affichage
-		List<Participant> listeParticipant = participants.lectureParticipants(nomEquipe);
-
-		for(Participant p : listeParticipant)
-        {
-            System.out.println(p.toString());
-        }
+		try {
+			cx.demarreTransaction();
+			// Validation
+			Equipe tupleEquipe = equipes.getEquipe(nomEquipe);
+			if (tupleEquipe == null)
+				throw new IFT287Exception("Equipe inexistant: " + nomEquipe);
+			if (!tupleEquipe.isActive())
+				throw new IFT287Exception("Equipe " + nomEquipe + "a encore des participants actifs");
+			
+			// affichage
+			List<Participant> listeParticipant = participants.lectureParticipants(nomEquipe);
+	
+			for(Participant p : listeParticipant)
+	        {
+	            System.out.println(p.toString());
+	        }
+			cx.commit();
+		} catch (Exception e) {
+			cx.rollback();
+			throw e;
+		}
 	}
 
 	/**
@@ -381,12 +397,14 @@ public class GestionParticipant {
 	 *  @throws SQLException, IFT287Exception, Exception
 	 */
 	public void affichageParticipants() throws IFT287Exception, Exception {
+		cx.demarreTransaction();
 		List<Participant> listeParticipant = participants.lectureParticipants();
 		
 		for(Participant p : listeParticipant)
         {
             System.out.println(p.toString());
         }
+		cx.commit();
 	}
 
 }

@@ -142,17 +142,21 @@ public class GestionEquipe {
 	 * @throws Exception
 	 */
 	public void affichageEquipe(String nomEquipe) throws IFT287Exception, Exception {
-
-		// Validation
-		Equipe tupleEquipe = equipes.getEquipe(nomEquipe);
-		if (tupleEquipe == null)
-			throw new IFT287Exception("Equipe inexistante: " + nomEquipe);
-		
-		// afficher l'équipe
-		System.out.println(tupleEquipe.toString());
-
+		try {
+			cx.demarreTransaction();
+			// Validation
+			Equipe tupleEquipe = equipes.getEquipe(nomEquipe);
+			if (tupleEquipe == null)
+				throw new IFT287Exception("Equipe inexistante: " + nomEquipe);
+			
+			// afficher l'équipe
+			System.out.println(tupleEquipe.toString());
+			cx.commit();
+		} catch (Exception e) {
+			cx.rollback();
+			throw e;
+		}
 	}
-
 
 	/**
 	 * Lecture des equipes d'une ligue
@@ -187,12 +191,14 @@ public class GestionEquipe {
 	 * @throws Exception
 	 */
 	public void affichageEquipes() throws IFT287Exception, Exception {
+		cx.demarreTransaction();
 		// afficher toutes les équipes
 		List<Equipe> list = equipes.calculerListeEquipes();
 
 		for (Equipe eq : list) {
 			System.out.println(eq.toString());
 		}
+		cx.commit();
 	}
 
 	/**
@@ -203,21 +209,27 @@ public class GestionEquipe {
 	 * @throws Exception
 	 */
 	public void afficherEquipesLigue(String nomLigue) throws IFT287Exception, Exception {
-		// Validation
-		Ligue tupleLigue = ligues.getLigue(nomLigue);
-		if (tupleLigue == null)
-			throw new IFT287Exception("La ligue " + nomLigue + " est inexistante.");
-
-		// Affichage
-		System.out.println("\nLigue " + nomLigue + "(nombre max de joueurs="
-				+ ligues.getLigue(nomLigue).getNbJoueurMaxParEquipe() + ") :");
-		for (Equipe eq : equipes.calculerListeEquipesLigue(nomLigue)) {
-			System.out
-					.println("nomEquipe=" + eq.getNomEquipe() + ", matriculeCap=" + eq.getCapitaine().getMatricule()
-							+ ", nombreDeMatchsGagnés=" + resultats.ObtenirNbMGagne(eq.getNomEquipe())
-							+ ", nombreDeMatchsPerdus=" + resultats.ObtenirNbMPerdu(eq.getNomEquipe())
-							+ ", nombreDeMatchsNuls=" + resultats.ObtenirNbMNul(eq.getNomEquipe()));
+		try {
+			cx.demarreTransaction();
+			// Validation
+			Ligue tupleLigue = ligues.getLigue(nomLigue);
+			if (tupleLigue == null)
+				throw new IFT287Exception("La ligue " + nomLigue + " est inexistante.");
+	
+			// Affichage
+			System.out.println("\nLigue " + nomLigue + "(nombre max de joueurs="
+					+ ligues.getLigue(nomLigue).getNbJoueurMaxParEquipe() + ") :");
+			for (Equipe eq : equipes.calculerListeEquipesLigue(nomLigue)) {
+				System.out
+						.println("nomEquipe=" + eq.getNomEquipe() + ", matriculeCap=" + eq.getCapitaine().getMatricule()
+								+ ", nombreDeMatchsGagnés=" + resultats.ObtenirNbMGagne(eq.getNomEquipe())
+								+ ", nombreDeMatchsPerdus=" + resultats.ObtenirNbMPerdu(eq.getNomEquipe())
+								+ ", nombreDeMatchsNuls=" + resultats.ObtenirNbMNul(eq.getNomEquipe()));
+			}
+			cx.commit();
+		} catch (Exception e) {
+			cx.rollback();
+			throw e;
 		}
 	}
-
 }

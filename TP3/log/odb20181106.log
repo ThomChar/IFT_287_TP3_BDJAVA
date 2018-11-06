@@ -1,0 +1,492 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 09:05:40 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 13416@LAPTOP-49CGENSA
+
+[2018-11-06 09:05:40 #2 store] 
+Configuration path: ?
+
+[2018-11-06 09:05:51 #3 type.registry] 
+New type modele.Ligue
+
+[2018-11-06 09:05:51 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 09:05:51 #5 type.registry] 
+New type modele.Equipe
+
+[2018-11-06 09:05:51 #6 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 09:05:51 #7 type.registry] 
+New type modele.Resultat
+
+[2018-11-06 09:05:51 #8 type.registry] 
+New type modele.Participant
+
+[2018-11-06 09:05:51 #9 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 09:05:51 #10 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 09:05:51 #11 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2018-11-06 09:05:51 #12 type.registry] 
+New type java.util.LinkedList<modele.Equipe>
+
+[2018-11-06 09:05:51 #13 type.registry] 
+New type java.util.LinkedList<modele.Resultat>
+
+[2018-11-06 09:05:51 #14 type.registry] 
+New type java.util.LinkedList<modele.Participant>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 09:06:55 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' has been recovered (tr. 1-23)
+
+[2018-11-06 09:06:55 #2 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 6088@LAPTOP-49CGENSA
+
+[2018-11-06 09:06:55 #3 store] 
+Configuration path: ?
+
+[2018-11-06 09:06:55 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 09:06:56 #5 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 09:06:56 #6 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 09:06:56 #7 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 09:07:01 #8 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2018-11-06 09:07:01 #9 type.registry] 
+New type java.util.ArrayList<modele.Participant>
+
+[2018-11-06 09:07:01 #10 type.registry] 
+New type com.objectdb.o.LMT
+
+[2018-11-06 09:07:01 #11 type.registry] 
+New type com.objectdb.o.VAL
+
+[2018-11-06 09:07:01 #12 type.registry] 
+New type com.objectdb.o.RFV
+
+[2018-11-06 09:07:01 #13 type.registry] 
+New type java.util.ArrayList<modele.Equipe>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 10:51:06 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 3252@LAPTOP-49CGENSA
+
+[2018-11-06 10:51:06 #2 store] 
+Configuration path: ?
+
+[2018-11-06 10:51:07 #3 type.registry] 
+New type modele.Ligue
+
+[2018-11-06 10:51:07 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 10:51:07 #5 type.registry] 
+New type modele.Equipe
+
+[2018-11-06 10:51:07 #6 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 10:51:07 #7 type.registry] 
+New type modele.Resultat
+
+[2018-11-06 10:51:07 #8 type.registry] 
+New type modele.Participant
+
+[2018-11-06 10:51:07 #9 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 10:51:07 #10 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 10:51:07 #11 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2018-11-06 10:51:07 #12 type.registry] 
+New type java.util.LinkedList<modele.Equipe>
+
+[2018-11-06 10:51:07 #13 type.registry] 
+New type java.util.LinkedList<modele.Resultat>
+
+[2018-11-06 10:51:07 #14 type.registry] 
+New type java.util.LinkedList<modele.Participant>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 10:52:32 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 8796@LAPTOP-49CGENSA
+
+[2018-11-06 10:52:32 #2 store] 
+Configuration path: ?
+
+[2018-11-06 10:52:34 #3 type.registry] 
+New type modele.Ligue
+
+[2018-11-06 10:52:34 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 10:52:34 #5 type.registry] 
+New type modele.Equipe
+
+[2018-11-06 10:52:34 #6 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 10:52:34 #7 type.registry] 
+New type modele.Resultat
+
+[2018-11-06 10:52:34 #8 type.registry] 
+New type modele.Participant
+
+[2018-11-06 10:52:34 #9 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 10:52:34 #10 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 10:52:34 #11 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2018-11-06 10:52:34 #12 type.registry] 
+New type java.util.LinkedList<modele.Equipe>
+
+[2018-11-06 10:52:34 #13 type.registry] 
+New type java.util.LinkedList<modele.Resultat>
+
+[2018-11-06 10:52:34 #14 type.registry] 
+New type java.util.LinkedList<modele.Participant>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 10:54:29 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 14072@LAPTOP-49CGENSA
+
+[2018-11-06 10:54:29 #2 store] 
+Configuration path: ?
+
+[2018-11-06 10:54:50 #3 type.registry] 
+New type modele.Ligue
+
+[2018-11-06 10:54:50 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 10:54:50 #5 type.registry] 
+New type modele.Equipe
+
+[2018-11-06 10:54:50 #6 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 10:54:50 #7 type.registry] 
+New type modele.Resultat
+
+[2018-11-06 10:54:50 #8 type.registry] 
+New type modele.Participant
+
+[2018-11-06 10:54:50 #9 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 10:54:50 #10 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 10:54:50 #11 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2018-11-06 10:54:50 #12 type.registry] 
+New type java.util.LinkedList<modele.Equipe>
+
+[2018-11-06 10:54:50 #13 type.registry] 
+New type java.util.LinkedList<modele.Resultat>
+
+[2018-11-06 10:54:50 #14 type.registry] 
+New type java.util.LinkedList<modele.Participant>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 11:05:53 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 17228@LAPTOP-49CGENSA
+
+[2018-11-06 11:05:53 #2 store] 
+Configuration path: ?
+
+[2018-11-06 11:05:55 #3 type.registry] 
+New type modele.Ligue
+
+[2018-11-06 11:05:55 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 11:05:55 #5 type.registry] 
+New type modele.Equipe
+
+[2018-11-06 11:05:55 #6 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 11:05:55 #7 type.registry] 
+New type modele.Resultat
+
+[2018-11-06 11:05:55 #8 type.registry] 
+New type modele.Participant
+
+[2018-11-06 11:05:55 #9 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 11:05:55 #10 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 11:05:55 #11 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2018-11-06 11:05:55 #12 type.registry] 
+New type java.util.LinkedList<modele.Equipe>
+
+[2018-11-06 11:05:55 #13 type.registry] 
+New type java.util.LinkedList<modele.Resultat>
+
+[2018-11-06 11:05:55 #14 type.registry] 
+New type java.util.LinkedList<modele.Participant>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 11:08:12 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 13844@LAPTOP-49CGENSA
+
+[2018-11-06 11:08:12 #2 store] 
+Configuration path: ?
+
+[2018-11-06 11:08:13 #3 type.registry] 
+New type modele.Ligue
+
+[2018-11-06 11:08:13 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 11:08:13 #5 type.registry] 
+New type modele.Equipe
+
+[2018-11-06 11:08:13 #6 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 11:08:13 #7 type.registry] 
+New type modele.Resultat
+
+[2018-11-06 11:08:13 #8 type.registry] 
+New type modele.Participant
+
+[2018-11-06 11:08:13 #9 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 11:08:13 #10 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 11:08:13 #11 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2018-11-06 11:08:13 #12 type.registry] 
+New type java.util.LinkedList<modele.Equipe>
+
+[2018-11-06 11:08:13 #13 type.registry] 
+New type java.util.LinkedList<modele.Resultat>
+
+[2018-11-06 11:08:13 #14 type.registry] 
+New type java.util.LinkedList<modele.Participant>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 11:13:59 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 15824@LAPTOP-49CGENSA
+
+[2018-11-06 11:13:59 #2 store] 
+Configuration path: ?
+
+[2018-11-06 11:14:01 #3 type.registry] 
+New type modele.Ligue
+
+[2018-11-06 11:14:01 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 11:14:01 #5 type.registry] 
+New type modele.Equipe
+
+[2018-11-06 11:14:01 #6 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 11:14:01 #7 type.registry] 
+New type modele.Resultat
+
+[2018-11-06 11:14:01 #8 type.registry] 
+New type modele.Participant
+
+[2018-11-06 11:14:01 #9 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 11:14:01 #10 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 11:14:01 #11 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2018-11-06 11:14:01 #12 type.registry] 
+New type java.util.LinkedList<modele.Equipe>
+
+[2018-11-06 11:14:01 #13 type.registry] 
+New type java.util.LinkedList<modele.Resultat>
+
+[2018-11-06 11:14:01 #14 type.registry] 
+New type java.util.LinkedList<modele.Participant>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 11:30:11 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' has been recovered (tr. 1-41)
+
+[2018-11-06 11:30:12 #2 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 5028@LAPTOP-49CGENSA
+
+[2018-11-06 11:30:12 #3 store] 
+Configuration path: ?
+
+[2018-11-06 11:30:12 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 11:30:12 #5 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 11:30:12 #6 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 11:30:12 #7 type] 
+Type modele.Participant is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 11:35:50 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 10968@LAPTOP-49CGENSA
+
+[2018-11-06 11:35:50 #2 store] 
+Configuration path: ?
+
+[2018-11-06 11:35:50 #3 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 11:35:50 #4 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 11:35:50 #5 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 11:35:50 #6 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 11:37:03 #7 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2018-11-06 11:37:03 #8 type.registry] 
+New type java.util.ArrayList<modele.Participant>
+
+[2018-11-06 11:37:03 #9 type.registry] 
+New type com.objectdb.o.LMT
+
+[2018-11-06 11:37:03 #10 type.registry] 
+New type com.objectdb.o.VAL
+
+[2018-11-06 11:37:03 #11 type.registry] 
+New type com.objectdb.o.RFV
+
+[2018-11-06 11:37:03 #12 type.registry] 
+New type java.util.ArrayList<modele.Equipe>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 18:30:49 #1 store] 
+Database 'E:\cours\semestreSherbrooke\0 - IFT287 Exploitation de bases de données relationnelles et orientées objet\TP3\IFT_287_TP3_BDJAVA\TP3\ift287_23db.odb' is opened by 9120@LAPTOP-49CGENSA
+
+[2018-11-06 18:30:49 #2 store] 
+Configuration path: ?
+
+[2018-11-06 18:30:50 #3 type.registry] 
+New type modele.Ligue
+
+[2018-11-06 18:30:50 #4 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 18:30:50 #5 type.registry] 
+New type modele.Equipe
+
+[2018-11-06 18:30:50 #6 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 18:30:50 #7 type.registry] 
+New type modele.Resultat
+
+[2018-11-06 18:30:50 #8 type.registry] 
+New type modele.Participant
+
+[2018-11-06 18:30:50 #9 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 18:30:50 #10 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 18:30:50 #11 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2018-11-06 18:30:50 #12 type.registry] 
+New type java.util.LinkedList<modele.Equipe>
+
+[2018-11-06 18:30:50 #13 type.registry] 
+New type java.util.LinkedList<modele.Resultat>
+
+[2018-11-06 18:30:50 #14 type.registry] 
+New type java.util.LinkedList<modele.Participant>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2018-11-06 18:32:05 #1 type.registry] 
+New type modele.Ligue
+
+[2018-11-06 18:32:05 #2 type] 
+Type modele.Ligue is not enhanced.
+
+[2018-11-06 18:32:05 #3 type.registry] 
+New type modele.Equipe
+
+[2018-11-06 18:32:05 #4 type] 
+Type modele.Equipe is not enhanced.
+
+[2018-11-06 18:32:05 #5 type.registry] 
+New type modele.Resultat
+
+[2018-11-06 18:32:05 #6 type.registry] 
+New type modele.Participant
+
+[2018-11-06 18:32:05 #7 type] 
+Type modele.Resultat is not enhanced.
+
+[2018-11-06 18:32:05 #8 type] 
+Type modele.Participant is not enhanced.
+
+[2018-11-06 18:32:06 #9 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2018-11-06 18:32:07 #10 type.registry] 
+New type java.util.LinkedList<modele.Equipe>
+
+[2018-11-06 18:32:07 #11 type.registry] 
+New type java.util.LinkedList<modele.Resultat>
+
+[2018-11-06 18:32:07 #12 type.registry] 
+New type java.util.LinkedList<modele.Participant>
+
