@@ -48,14 +48,17 @@ public class GestionEquipe {
 			// vérifications
 			if (equipes.existe(nomEquipe))
 				throw new IFT287Exception("L'équipe existe déjà pour le nom " + nomEquipe + ".");
+			if (!participants.existe(matriculeCap))
+				throw new IFT287Exception("Le participant ayant le matricule '" + matriculeCap + "' n'existe pas.");
 			if (equipes.testDejaCapitaine(matriculeCap))
 				throw new IFT287Exception("Ce participant est deja capitaine pour une autre équipe.");
 			if (!ligues.existe(nomLigue))
 				throw new IFT287Exception("La ligue " + nomLigue + " n'existe pas.");
-			if (!participants.existe(matriculeCap))
-				throw new IFT287Exception("Le participant ayant le matricule " + matriculeCap + " n'existe pas : ");
-			
+						
 			Participant capitaine = participants.getParticipant(matriculeCap);
+			if(capitaine.getEquipe() != null && capitaine.getStatut().equals("ACCEPTE"))
+				throw new IFT287Exception("Le participant ayant le matricule '" + matriculeCap + "' est déjà dans une équipe.");
+			
 			Ligue ligue = ligues.getLigue(nomLigue);
 			Equipe tupleEquipe = new Equipe(ligue, nomEquipe, capitaine);
 			

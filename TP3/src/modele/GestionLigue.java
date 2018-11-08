@@ -103,7 +103,7 @@ public class GestionLigue {
             if (tupleLigue == null)
                 throw new IFT287Exception("Ligue inexistant: " + nomLigue);
             if (participant.nombreMembresLigue(nomLigue) > 0)
-                throw new IFT287Exception("Ligue " + nomLigue + "a encore des participants actifs");
+                throw new IFT287Exception("Ligue " + nomLigue + " a encore des participants actifs");
             
             // suppression de la ligue
             boolean testLigue = ligues.supprimer(tupleLigue);
